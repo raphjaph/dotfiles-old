@@ -66,4 +66,8 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 
 alias f='fzf'
+
+# USAGE: dotfiles add ...; dotfiles commit -m "..."; dotfiles push;
+# Source: https://www.ackama.com/what-we-think/the-best-way-to-store-your-dotfiles-a-bare-git-repository-explained/
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias dot='dotfiles'
