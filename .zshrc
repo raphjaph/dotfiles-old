@@ -1,4 +1,5 @@
 #PROMPT='%F{208}%n%f@%m %F{226}%~%f > '
+#PROMPT=$'\n%F{green}%n@%m%f %B%F{cyan}%~f%b\n> '
 PROMPT=$'\n%F{cyan}%~\n%B%F{green}>%f%b '
 
 # Homebrew
@@ -41,7 +42,7 @@ fpath=(~/.config/zsh/zsh-completions/src $fpath)
 #rm -f ~/.zcompdump; compinit
 
 # Aliases
-alias ls='ls -G'
+alias ls='ls -G --color=always'
 alias ll='ls -lG'
 alias la='ls -laG'
 
@@ -57,7 +58,11 @@ alias tma='tmux attach -t'
 alias tmk='tmux kill-session -t'
 
 alias d='docker'
+alias dl='docker logs'
 alias dc='docker-compose'
+alias dex='docker exec -ti'
+
+alias lcli='docker exec lightningd lightning-cli'
 
 alias g='glow'
 
