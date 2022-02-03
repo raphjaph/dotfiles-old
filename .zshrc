@@ -1,19 +1,6 @@
 #PROMPT='%F{208}%n%f@%m %F{226}%~%f > '
-#PROMPT=$'\n%F{green}%n@%m%f %B%F{cyan}%~f%b\n> '
-PROMPT=$'\n%F{cyan}%~\n%B%F{green}>%f%b '
-
-# Homebrew
-export PATH=$PATH:/usr/local/bin
-
-# V Lang
-export PATH=$PATH:$HOME/v
-
-# Golang
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
-
-# Yubikey ssh-agent
-export SSH_AUTH_SOCK="$(brew --prefix)/var/run/yubikey-agent.sock"
+PROMPT=$'\n%F{green}%n@%m %B%F{cyan}%~%b\n> '
+#PROMPT=$'\n%F{cyan}%~\n%B%F{green}>%f%b '
 
 # vim
 export EDITOR="vim"
@@ -39,14 +26,14 @@ bindkey -M vicmd 'j' history-substring-search-down
 
 # completions
 fpath=(~/.config/zsh/zsh-completions/src $fpath)
-#rm -f ~/.zcompdump; compinit
+rm -f ~/.zcompdump; compinit
 
 # Aliases
 alias ls='ls -G --color=always'
 alias ll='ls -lG'
 alias la='ls -laG'
 
-alias cat='bat -pp'
+alias cat='batcat -pp'
 
 alias gs='git status'
 alias ga='git add'
