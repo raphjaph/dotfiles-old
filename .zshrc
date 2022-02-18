@@ -2,6 +2,9 @@
 #PROMPT=$'\n%F{green}%n@%m%f %B%F{cyan}%~f%b\n> '
 PROMPT=$'\n%F{cyan}%~\n%B%F{green}>%f%b '
 
+# share history between windows/panes
+setopt inc_append_history
+
 # Homebrew
 export PATH=$PATH:/usr/local/bin
 
@@ -10,15 +13,16 @@ export PATH=$PATH:$HOME/v
 
 # Golang
 export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
+export GOBIN=$GOPATH/bin
+export PATH=$PATH:$GOBIN
 
 # Yubikey ssh-agent
 export SSH_AUTH_SOCK="$(brew --prefix)/var/run/yubikey-agent.sock"
 
 # vim
-export EDITOR="vim"
-export VISUAL="vim"
-export VIMINIT="source ~/.config/vim/vimrc"
+export EDITOR="nvim"
+export VISUAL="nvim"
+#export VIMINIT="source ~/.config/vim/vimrc"
 
 # Vi mode
 bindkey -v
@@ -42,7 +46,7 @@ fpath=(~/.config/zsh/zsh-completions/src $fpath)
 #rm -f ~/.zcompdump; compinit
 
 # Aliases
-alias ls='ls -G --color=always'
+alias ls='ls -G'
 alias ll='ls -lG'
 alias la='ls -laG'
 
@@ -72,7 +76,12 @@ alias ....='cd ../../..'
 
 alias f='fzf'
 
+alias vim='nvim'
+
 # USAGE: dotfiles add ...; dotfiles commit -m "..."; dotfiles push;
 # Source: https://www.ackama.com/what-we-think/the-best-way-to-store-your-dotfiles-a-bare-git-repository-explained/
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias dot='dotfiles'
+
+alias unixt='date +%s'
+alias grep='grep -i'
