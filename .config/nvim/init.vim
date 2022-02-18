@@ -1,10 +1,22 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'NLKNguyen/papercolor-theme'
+
+" language support and code completion
 Plug 'fatih/vim-go'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+
+" File finder
 Plug 'junegunn/fzf', {'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+
+" Markdown Viewer: requires nodejs and yarn
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+
+" Git stuff
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+
 
 call plug#end()
 
@@ -38,17 +50,23 @@ set mouse=a                 " enable mouse click
 set clipboard=unnamedplus   " using system clipboard
 set cursorline              " highlight current cursorline
 set splitright              " split new window to right
+set splitbelow
+
 
 " -------------------------------------------------------
 " MY MAPPINGS
 " <leader> is the \ by default
 " reload and open init.vim
-nnoremap <silent> <Leader>r :source $MYVIMRC<cr>
+nnoremap <Leader>r :source $MYVIMRC<cr>
 nnoremap <silent> <Leader>e :e $MYVIMRC<cr>
 
-" GFiles: search git files with fzf
-nnoremap <Leader>p :GFiles<cr>
+" GFiles: search files with fzf
+nnoremap <Leader>p :Files<cr>
 
+" MarkdownPreview
+nnoremap <Leader>m :MarkdownPreview<CR>
+" do not close the preview tab when switching to other buffers
+let g:mkdp_auto_close = 0
 
 " -------------------------------------------------------------------------------------------------
 " coc.nvim default settings
