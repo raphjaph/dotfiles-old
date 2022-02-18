@@ -50,11 +50,6 @@ nnoremap <silent> <Leader>e :e $MYVIMRC<cr>
 nnoremap <Leader>p :GFiles<cr>
 
 
-
-" faster scrolling
-"
-lua require('neoscroll').setup()
-
 " -------------------------------------------------------------------------------------------------
 " coc.nvim default settings
 " CoC (Code Completion)
