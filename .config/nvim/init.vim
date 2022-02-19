@@ -68,6 +68,14 @@ nnoremap <Leader>m :MarkdownPreview<CR>
 " do not close the preview tab when switching to other buffers
 let g:mkdp_auto_close = 0
 
+"
+" netrw stuff
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 0
+let g:netrw_altv = 1
+let g:netrw_winsize = 20
+
 " -------------------------------------------------------------------------------------------------
 " coc.nvim default settings
 " CoC (Code Completion)
