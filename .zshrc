@@ -68,6 +68,9 @@ alias dex='docker exec -ti'
 
 alias lcli='docker exec lightningd lightning-cli'
 
+alias m='mdr'
+# better glow written in GO
+# https://github.com/MichaelMure/mdr/
 alias g='glow'
 
 alias ..='cd ..'
@@ -85,3 +88,4 @@ alias dot='dotfiles'
 
 alias unixt='date +%s'
 alias grep='grep -i'
+alias qr='qrencode -t ansiutf8'
