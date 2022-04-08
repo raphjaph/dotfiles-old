@@ -34,6 +34,11 @@ set updatetime=300          " Smaller updatetime for CursorHold & CursorHoldI
 set shortmess+=c            " don't give |ins-completion-menu| messages.
 set signcolumn=yes          " always show signcolumns (left of numbers)
 
+
+set foldlevel=99
+set foldmethod=syntax
+set foldclose=all
+
 "==============================================================================
 " plugins: using vim-plug
 "==============================================================================
@@ -92,6 +97,7 @@ let mapleader = " "
 " | is the :bar or <BAR> command to execute two commands
 nnoremap <Leader>r :source $MYVIMRC <cr>
 nnoremap <silent> <Leader>e :e $MYVIMRC<cr>
+nnoremap <Leader>f :Telescope find_files<cr>
 
 " MarkdownPreview
 nnoremap <Leader>m :MarkdownPreview<CR>

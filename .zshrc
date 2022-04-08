@@ -47,8 +47,8 @@ fpath=(~/.config/zsh/zsh-completions/src $fpath)
 
 # Aliases
 alias ls='ls -G'
-alias ll='ls -lG'
-alias la='ls -laG'
+alias ll='ls -lGh'
+alias la='ls -laGh'
 
 alias cat='bat -pp'
 
@@ -77,7 +77,20 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
-alias f='fzf'
+# find and fly to directory
+ffd() {
+  local dir
+  dir=$(fd . ${1:-~} --type d -uu | fzf) &&
+  cd "$dir"
+}
+# faster fzf filter input (fd written in Rust)
+alias f='fd . ${1:-~} --type f -uu | fzf'
+export FZF_DEFAULT_COMMAND='fd --type f --color=never'
+
+alias grep='grep -i'
+# use ack instead of grep 
+# or try this `brew install the_silver_searcher` (ag)
+# alias ack=''
 
 alias vim='nvim'
 
@@ -86,6 +99,15 @@ alias vim='nvim'
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias dot='dotfiles'
 
-alias unixt='date +%s'
-alias grep='grep -i'
+alias kp='keepassxc-cli'
+alias kpl='keepassxc-cli locate /Users/raphael/Documents/Keepassxc/Passwords.kdbx'
+alias kpc='keepassxc-cli clip /Users/raphael/Documents/Keepassxc/Passwords.kdbx'
+
+alias date='date +%d-%m-%y'
+alias unixt='\date +%s'
+alias utc='\date -u +%H:%M:%S'
+
+alias log='vim $(date).md'
 alias qr='qrencode -t ansiutf8'
+
+alias o='open $(f)'
