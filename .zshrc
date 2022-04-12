@@ -8,9 +8,6 @@ setopt inc_append_history
 # Homebrew
 export PATH=$PATH:/usr/local/bin
 
-# V Lang
-export PATH=$PATH:$HOME/v
-
 # Golang
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
@@ -22,7 +19,7 @@ export SSH_AUTH_SOCK="$(brew --prefix)/var/run/yubikey-agent.sock"
 # vim
 export EDITOR="nvim"
 export VISUAL="nvim"
-#export VIMINIT="source ~/.config/vim/vimrc"
+export VIMINIT="source ~/.config/nvim/init.vim"
 
 # Vi mode
 bindkey -v
@@ -46,68 +43,4 @@ fpath=(~/.config/zsh/zsh-completions/src $fpath)
 #rm -f ~/.zcompdump; compinit
 
 # Aliases
-alias ls='ls -G'
-alias ll='ls -lGh'
-alias la='ls -laGh'
-
-alias cat='bat -pp'
-
-alias gs='git status'
-alias ga='git add'
-alias gc='git commit -m'
-
-alias tm='tmux'
-alias tml='tmux list-sessions'
-alias tma='tmux attach -t'
-alias tmk='tmux kill-session -t'
-
-alias d='docker'
-alias dl='docker logs'
-alias dc='docker-compose'
-alias dex='docker exec -ti'
-
-alias lcli='docker exec lightningd lightning-cli'
-
-alias m='mdr'
-# better glow written in GO
-# https://github.com/MichaelMure/mdr/
-alias g='glow'
-
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-
-# find and fly to directory
-ffd() {
-  local dir
-  dir=$(fd . ${1:-~} --type d -uu | fzf) &&
-  cd "$dir"
-}
-# faster fzf filter input (fd written in Rust)
-alias f='fd . ${1:-~} --type f -uu | fzf'
-export FZF_DEFAULT_COMMAND='fd --type f --color=never'
-
-alias grep='grep -i'
-# use ack instead of grep 
-# or try this `brew install the_silver_searcher` (ag)
-# alias ack=''
-
-alias vim='nvim'
-
-# USAGE: dotfiles add ...; dotfiles commit -m "..."; dotfiles push;
-# Source: https://www.ackama.com/what-we-think/the-best-way-to-store-your-dotfiles-a-bare-git-repository-explained/
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-alias dot='dotfiles'
-
-alias kp='keepassxc-cli'
-alias kpl='keepassxc-cli locate /Users/raphael/Documents/Keepassxc/Passwords.kdbx'
-alias kpc='keepassxc-cli clip /Users/raphael/Documents/Keepassxc/Passwords.kdbx'
-
-alias date='date +%d-%m-%y'
-alias unixt='\date +%s'
-alias utc='\date -u +%H:%M:%S'
-
-alias log='vim $(date).md'
-alias qr='qrencode -t ansiutf8'
-
-alias o='open $(f)'
+source ~/.zsh_aliases

@@ -1,0 +1,76 @@
+alias ls='ls -G'
+alias ll='ls -lGh'
+alias la='ls -laGh'
+
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+alias cat='bat -pp'
+
+alias vim='nvim'
+
+# Git
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit -m'
+
+# tmux
+alias tm='tmux'
+alias tml='tmux list-sessions'
+alias tma='tmux attach -t'
+alias tmk='tmux kill-session -t'
+
+# docker
+alias d='docker'
+alias dl='docker logs'
+alias dc='docker-compose'
+alias dex='docker exec -ti'
+
+# lightning
+alias lcli='docker exec lightningd lightning-cli'
+
+# Markdown Viewers
+alias g='glow'
+# better glow written in GO
+# https://github.com/MichaelMure/mdr/
+alias m='mdr'
+
+# Searching & Finding
+# find and fly to directory
+alias find='fd --search-path ~ --search-path /Applications -uu'
+export FZF_DEFAULT_COMMAND='fd --type f --color=never'
+ffd() {
+  local dir
+  dir=$(find --type d | fzf) &&
+  cd "$dir"
+}
+#
+# `brew install the_silver_searcher` (ag)
+alias grep='ag'
+alias ag='ag -i'
+
+
+# Dotfile Management
+# USAGE: dotfiles add ...; dotfiles commit -m "..."; dotfiles push;
+# Source: https://www.ackama.com/what-we-think/the-best-way-to-store-your-dotfiles-a-bare-git-repository-explained/
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias dot='dotfiles'
+alias dotls='dotfiles ls-tree -r --full-tree'
+
+
+# Miscellaneous
+alias kp='keepassxc-cli'
+alias kpl='keepassxc-cli locate /Users/raphael/Documents/Keepassxc/Passwords.kdbx'
+alias kpc='keepassxc-cli clip /Users/raphael/Documents/Keepassxc/Passwords.kdbx'
+
+alias date='date +%d-%m-%y'
+alias unixt='\date +%s'
+alias utc='\date -u +%H:%M:%S'
+
+alias logentry='vim $(date).md'
+
+alias qr='qrencode -t ansiutf8'
+
+alias o='open $(find --type f | fzf)'
+alias oa='open $(fd --search-path /Applications -e .app | fzf)'
