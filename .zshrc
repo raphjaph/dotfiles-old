@@ -1,20 +1,11 @@
 #PROMPT='%F{208}%n%f@%m %F{226}%~%f > '
-#PROMPT=$'\n%F{green}%n@%m%f %B%F{cyan}%~f%b\n> '
-PROMPT=$'\n%F{cyan}%~\n%B%F{green}>%f%b '
+PROMPT=$'\n%F{green}%n@%m%f %B%F{cyan}%~f%b\n> '
 
 # share history between windows/panes
 setopt inc_append_history
 
-# Homebrew
-export PATH=$PATH:/usr/local/bin
-
 # Golang
-export GOPATH=$HOME/go
-export GOBIN=$GOPATH/bin
-export PATH=$PATH:$GOBIN
-
-# Yubikey ssh-agent
-export SSH_AUTH_SOCK="$(brew --prefix)/var/run/yubikey-agent.sock"
+export PATH=/usr/local/go/bin:$PATH
 
 # vim
 export EDITOR="nvim"

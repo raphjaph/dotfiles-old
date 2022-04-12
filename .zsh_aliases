@@ -1,12 +1,12 @@
-alias ls='ls -G'
-alias ll='ls -lGh'
-alias la='ls -laGh'
+alias ls='ls -G --color=always'
+alias ll='ls -l'
+alias la='ls -la'
 
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
-alias cat='bat -pp'
+alias cat='batcat -pp'
 
 alias vim='nvim'
 
@@ -38,7 +38,7 @@ alias m='mdr'
 
 # Searching & Finding
 # find and fly to directory
-alias find='fd --search-path ~ --search-path /Applications -uu'
+alias find='fd --search-path / -uu'
 export FZF_DEFAULT_COMMAND='fd --type f --color=never'
 ffd() {
   local dir
@@ -60,17 +60,12 @@ alias dotls='dotfiles ls-tree -r --full-tree'
 
 
 # Miscellaneous
-alias kp='keepassxc-cli'
-alias kpl='keepassxc-cli locate /Users/raphael/Documents/Keepassxc/Passwords.kdbx'
-alias kpc='keepassxc-cli clip /Users/raphael/Documents/Keepassxc/Passwords.kdbx'
-
 alias date='date +%d-%m-%y'
 alias unixt='\date +%s'
 alias utc='\date -u +%H:%M:%S'
 
-alias logentry='vim $(date).md'
 
 alias qr='qrencode -t ansiutf8'
 
-alias o='open $(find --type f | fzf)'
-alias oa='open $(fd --search-path /Applications -e .app | fzf)'
+alias logs='sudo journalctl -f -u '
+
