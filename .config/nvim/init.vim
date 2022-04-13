@@ -43,8 +43,7 @@ set foldclose=all
 " plugins: using vim-plug
 "==============================================================================
 
-"call plug#begin('~/.config/nvim/autoload')
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/autoload')
 
 " Color Theme
 Plug 'NLKNguyen/papercolor-theme'
