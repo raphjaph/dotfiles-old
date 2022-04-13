@@ -70,7 +70,7 @@ Plug 'sheerun/vim-polyglot'
 "Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
 " Treesitter (AST)
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+"Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " Markdown Viewer: requires nodejs and yarn
 "Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
