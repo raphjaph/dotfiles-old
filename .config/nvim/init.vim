@@ -94,7 +94,7 @@ let mapleader = " "
 
 " reload and open init.vim
 " | is the :bar or <BAR> command to execute two commands
-nnoremap <Leader>r :source $MYVIMRC <cr>
+nnoremap <Leader>r :source ~/.config/nvim/init.vim <cr>
 nnoremap <silent> <Leader>e :e $MYVIMRC<cr>
 nnoremap <Leader>f :Telescope find_files<cr>
 
