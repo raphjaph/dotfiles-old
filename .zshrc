@@ -1,6 +1,6 @@
 #PROMPT='%F{208}%n%f@%m %F{226}%~%f > '
 #PROMPT=$'\n%F{green}%n@%m%f %B%F{cyan}%~f%b\n> '
-PROMPT=$'\n%F{cyan}%~\n%B%F{green}>%f%b '
+PROMPT=$'\n%F{cyan}%~%f\n%B%F{green}>%f%b '
 
 # share history between windows/panes
 setopt inc_append_history
