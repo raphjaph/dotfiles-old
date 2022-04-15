@@ -47,8 +47,8 @@ ffd() {
 }
 #
 # `brew install the_silver_searcher` (ag)
+alias ag='ag -ir'
 alias grep='ag'
-alias ag='ag -i'
 
 
 # Dotfile Management
