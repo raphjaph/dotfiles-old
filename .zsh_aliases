@@ -69,3 +69,4 @@ alias qr='qrencode -t ansiutf8'
 
 alias logs='sudo journalctl -f -u '
 
+alias ports='sudo netstat -ap | ag -i --nocolor "tcp|udp"'
