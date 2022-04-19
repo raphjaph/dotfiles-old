@@ -69,8 +69,15 @@ alias unixt='\date +%s'
 alias utc='\date -u +%H:%M:%S'
 
 alias logentry='vim $(date).md'
+getbookmarks() {
+  cat ~/Library/Application\ Support/BraveSoftware/Brave-Browser/Default/Bookmarks | \
+  jq '.roots.bookmark_bar.children[] | select(.name != "not-share") | .children | .. | .url? | select(.)' | \
+  uniq | tr -d \"
+}
 
 alias qr='qrencode -t ansiutf8'
 
 alias o='open $(find --type f | fzf)'
 alias oa='open $(fd --search-path /Applications -e .app | fzf)'
+
+

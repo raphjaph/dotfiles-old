@@ -44,3 +44,5 @@ fpath=(~/.config/zsh/zsh-completions/src $fpath)
 
 # Aliases
 source ~/.zsh_aliases
+
+source ~/.secret_aliases
