@@ -1,3 +1,5 @@
+alias s='source ~/.zshrc'
+
 alias ls='ls -G'
 alias ll='ls -lGh'
 alias la='ls -laGh'
@@ -80,4 +82,9 @@ alias qr='qrencode -t ansiutf8'
 alias o='open $(find --type f | fzf)'
 alias oa='open $(fd --search-path /Applications -e .app | fzf)'
 
+alias enc='gpg --encrypt --armor --recipient'
+alias decrypt='gpg --decrypt --armor'
+alias sign='gpg --armor --clearsign -u 41E04F0D' 
 
+
+alias allApps='{ brew leaves & ll /Applications; }'

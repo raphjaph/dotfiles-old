@@ -39,6 +39,8 @@ set foldlevel=99
 set foldmethod=syntax
 set foldclose=all
 
+"set modelines=1   "https://dougblack.io/words/a-good-vimrc.html
+
 "==============================================================================
 " plugins: using vim-plug
 "==============================================================================
