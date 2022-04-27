@@ -29,6 +29,7 @@ alias dex='docker exec -ti'
 
 # lightning
 alias lcli='docker exec lightningd lightning-cli'
+alias lh='lcli help | fzf'
 
 # Markdown Viewers
 alias g='glow'
@@ -47,7 +48,7 @@ ffd() {
 }
 #
 # `brew install the_silver_searcher` (ag)
-alias ag='ag -ir'
+alias ag='ag -i'
 alias grep='ag'
 
 
@@ -69,4 +70,5 @@ alias qr='qrencode -t ansiutf8'
 
 alias logs='sudo journalctl -f -u '
 
-alias ports='sudo netstat -ap | ag -i --nocolor "tcp|udp"'
+alias ports='sudo netstat -tunapl | ag -i --nocolor "tcp|udp"'
+alias lz='lazydocker'

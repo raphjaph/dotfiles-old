@@ -5,7 +5,7 @@ PROMPT=$'\n%F{green}%n@%m%f %B%F{cyan}%~%f%b\n> '
 setopt inc_append_history
 
 # Golang
-export PATH=/usr/local/go/bin:$PATH
+export PATH=/home/raphael/go/bin:/usr/local/go/bin:$PATH
 
 # vim
 export EDITOR="nvim"
