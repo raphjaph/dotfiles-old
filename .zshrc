@@ -46,3 +46,4 @@ fpath=(~/.config/zsh/zsh-completions/src $fpath)
 source ~/.zsh_aliases
 
 source ~/.secret_aliases
+export PATH="/usr/local/sbin:$PATH"

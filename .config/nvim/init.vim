@@ -45,8 +45,7 @@ set foldclose=all
 " plugins: using vim-plug
 "==============================================================================
 
-"call plug#begin('~/.config/nvim/autoload')
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/autoload')
 
 " Color Theme
 Plug 'NLKNguyen/papercolor-theme'
@@ -68,7 +67,7 @@ Plug 'hrsh7th/cmp-path'
 
 " language support and code completion
 Plug 'fatih/vim-go'
-Plug 'sheerun/vim-polyglot'
+"Plug 'sheerun/vim-polyglot'
 "Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
 " Treesitter (AST)
