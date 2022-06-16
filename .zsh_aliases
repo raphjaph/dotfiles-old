@@ -33,25 +33,50 @@ alias dex='docker exec -ti'
 alias lcli='docker exec lightningd lightning-cli'
 
 # Markdown Viewers
-alias g='glow'
-# better glow written in GO
 # https://github.com/MichaelMure/mdr/
 alias m='mdr'
 
-# Searching & Finding
-# find and fly to directory
-alias find='fd --search-path ~ --search-path /Applications -uu'
+####   Searching & Finding
+# https://bluz71.github.io/2018/11/26/fuzzy-finding-in-bash-with-fzf.html
+# ctrl-r reverse search command history 
+# ctrl-t append found files to end of line
+source $(brew --prefix)/opt/fzf/shell/key-bindings.zsh 
+#source $(brew --prefix)/opt/fzf/shell/completion.zsh 
 export FZF_DEFAULT_COMMAND='fd --type f --color=never'
-ffd() {
-  local dir
-  dir=$(find --type d | fzf) &&
-  cd "$dir"
-}
-#
-# `brew install the_silver_searcher` (ag)
-alias grep='ag'
-alias ag='ag -i'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"  
+export FZF_CTRL_T_OPTS="--preview 'bat --color=always --line-range :500 {}'"
+export FZF_ALT_C_COMMAND='fd --type d . --color=never'
+export FZF_DEFAULT_OPTS='
+  --height 75% --multi --reverse
+  --bind ctrl-f:page-down,ctrl-b:page-up
+'
 
+fzf_find_edit() {
+    local file=$(
+      fzf --query="$1" --no-multi --select-1 --exit-0 \
+          --preview 'bat --color=always --line-range :500 {}'
+      )
+    if [[ -n $file ]]; then
+        $EDITOR "$file"
+    fi
+}
+alias ffe='fzf_find_edit'
+
+fzf_change_directory() {
+    local directory=$(
+      fd --type d | \
+      fzf --query="$1" --no-multi --select-1 --exit-0 \
+          --preview 'tree -C {} | head -100'
+      )
+    if [[ -n $directory ]]; then
+        cd "$directory"
+    fi
+}
+alias fcd='fzf_change_directory'
+
+# `brew install the_silver_searcher` (ag)
+alias grep='rg -i'
+alias ag='ag -i'
 
 # Dotfile Management
 # USAGE: dotfiles add ...; dotfiles commit -m "..."; dotfiles push;
@@ -62,9 +87,10 @@ alias dotls='dotfiles ls-tree -r --full-tree'
 
 
 # Miscellaneous
-alias kp='keepassxc-cli'
-alias kpl='keepassxc-cli locate /Users/raphael/Documents/Keepassxc/Passwords.kdbx'
-alias kpc='keepassxc-cli clip /Users/raphael/Documents/Keepassxc/Passwords.kdbx'
+export PASSWORD_DB='/Users/raphael/Documents/Keepassxc/Passwords.kdbx'
+alias kp='keepassxc-cli open $PASSWORD_DB'
+alias kps='keepassxc-cli search $PASSWORD_DB'
+alias kpc='keepassxc-cli clip $PASSWORD_DB'
 
 alias date='date +%d-%m-%y'
 alias unixt='\date +%s'
@@ -88,3 +114,16 @@ alias sign='gpg --armor --clearsign -u 41E04F0D'
 
 
 alias allApps='{ brew leaves & ll /Applications; }'
+
+
+man() {
+	env \
+		LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+		LESS_TERMCAP_md=$(printf "\e[1;31m") \
+		LESS_TERMCAP_me=$(printf "\e[0m") \
+		LESS_TERMCAP_se=$(printf "\e[0m") \
+		LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+		LESS_TERMCAP_ue=$(printf "\e[0m") \
+		LESS_TERMCAP_us=$(printf "\e[1;32m") \
+		man "$@"
+}

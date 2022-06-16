@@ -20,6 +20,7 @@ export SSH_AUTH_SOCK="$(brew --prefix)/var/run/yubikey-agent.sock"
 export EDITOR="nvim"
 export VISUAL="nvim"
 export VIMINIT="source ~/.config/nvim/init.vim"
+export MYVIMRC="~/.config/nvim/init.vim"
 
 # Vi mode
 bindkey -v

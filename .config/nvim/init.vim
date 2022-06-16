@@ -69,6 +69,7 @@ Plug 'hrsh7th/cmp-path'
 Plug 'fatih/vim-go'
 "Plug 'sheerun/vim-polyglot'
 "Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'LnL7/vim-nix'
 
 " Treesitter (AST)
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
