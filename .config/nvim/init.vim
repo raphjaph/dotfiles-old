@@ -11,7 +11,7 @@ set cc=80                   " set an 80 column border for good coding style
 set ma
 set showmatch               " show matching 
 set cursorline              " highlight current cursorline
-set scrolloff=7             " number of lines of context around cursor
+set scrolloff=20             " number of lines of context around cursor
 
 set ignorecase              " case insensitive 
 set incsearch               " incremental search

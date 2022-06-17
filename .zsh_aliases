@@ -42,10 +42,10 @@ alias m='mdr'
 # ctrl-t append found files to end of line
 source $(brew --prefix)/opt/fzf/shell/key-bindings.zsh 
 #source $(brew --prefix)/opt/fzf/shell/completion.zsh 
-export FZF_DEFAULT_COMMAND='fd --type f --color=never'
+export FZF_DEFAULT_COMMAND='fd --type f --color=never --hidden'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"  
 export FZF_CTRL_T_OPTS="--preview 'bat --color=always --line-range :500 {}'"
-export FZF_ALT_C_COMMAND='fd --type d . --color=never'
+export FZF_ALT_C_COMMAND='fd --type d . --color=never --hidden'
 export FZF_DEFAULT_OPTS='
   --height 75% --multi --reverse
   --bind ctrl-f:page-down,ctrl-b:page-up
@@ -64,7 +64,7 @@ alias ffe='fzf_find_edit'
 
 fzf_change_directory() {
     local directory=$(
-      fd --type d | \
+      fd --type d --hidden | \
       fzf --query="$1" --no-multi --select-1 --exit-0 \
           --preview 'tree -C {} | head -100'
       )
