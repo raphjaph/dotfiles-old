@@ -69,6 +69,8 @@
       dotfiles  = "/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME";
       dot       = "dotfiles";
       qr        = "qrencode -t ansiutf8";
+      man       = "colorful_man";
+      s         = "source $HOME/.zshrc";
     };
     defaultKeymap = "viins";
   };
