@@ -10,21 +10,23 @@
       ffmpeg
       fzf
       git
+      gnupg
       htop
-#      hugo
       jq
+      neovim
       netcat
       pdfgrep
       pfetch
       pstree
+      qrencode
       ripgrep
       silver-searcher
       socat
       sshfs
       tree
       tree
-      neovim
       wget
+#      hugo
     ];
     
     sessionVariables = {
@@ -50,7 +52,6 @@
     enableCompletion = true;
     enableAutosuggestions = true;
     enableSyntaxHighlighting = true;
-#    dotDir = ".config/zsh";
     initExtra = ''
       PROMPT=$'\n%F{green}%n@%m%f %B%F{cyan}%~%f%b\n> '
      
@@ -62,10 +63,12 @@
       ll        = "ls -lGh";
       la        = "ls -laGh";
       vim       = "nvim";
+      lvim      = "nvim -c \"normal '0\" -c bd1";
       ffe       = "fzf_edit"; 
       fcd       = "fzf_change_directory";
       dotfiles  = "/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME";
       dot       = "dotfiles";
+      qr        = "qrencode -t ansiutf8";
     };
     defaultKeymap = "viins";
   };
