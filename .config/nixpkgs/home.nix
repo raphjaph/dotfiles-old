@@ -24,7 +24,8 @@
       socat
       sshfs
       tree
-      tree
+      tmux
+      reattach-to-user-namespace
       wget
 #      hugo
     ];
