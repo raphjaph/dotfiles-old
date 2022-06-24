@@ -11,6 +11,7 @@
       fzf
       git
       gnupg
+#      python310Packages.howdoi
       htop
       jq
       neovim
@@ -19,13 +20,14 @@
       pfetch
       pstree
       qrencode
+      reattach-to-user-namespace
       ripgrep
       silver-searcher
       socat
       sshfs
-      tree
+      tldr
       tmux
-      reattach-to-user-namespace
+      tree
       wget
 #      hugo
     ];
@@ -63,12 +65,13 @@
       ls        = "ls -G";
       ll        = "ls -lGh";
       la        = "ls -laGh";
-      vim       = "nvim";
-      lvim      = "nvim -c \"normal '0\" -c bd1";
+      vim         = "nvim";
+      lv        = "nvim -c \"normal '0\" -c bd1";
       ffe       = "fzf_edit"; 
       fcd       = "fzf_change_directory";
       dotfiles  = "/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME";
       dot       = "dotfiles";
+      dotls     = "dotfiles ls-tree -r --full-tree";
       qr        = "qrencode -t ansiutf8";
       man       = "colorful_man";
       s         = "source $HOME/.zshrc";
