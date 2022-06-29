@@ -11,7 +11,8 @@
       fzf
       git
       gnupg
-#      python310Packages.howdoi
+      go
+      gopls
       htop
       jq
       neovim
@@ -19,6 +20,7 @@
       pdfgrep
       pfetch
       pstree
+      python3
       qrencode
       reattach-to-user-namespace
       ripgrep
@@ -30,6 +32,7 @@
       tree
       wget
 #      hugo
+#      python310Packages.howdoi
     ];
     
     sessionVariables = {
@@ -41,14 +44,6 @@
     sessionPath = [ "$HOME/bin" ];
   };
   
-  programs.fzf = {
-    enable = true;
-    enableZshIntegration = true;
-    defaultCommand = "fd --type f --color=never --hidden";
-    defaultOptions = [ "--height 75% --multi --reverse --bind ctrl-f:page-down,ctrl-b:page-up" ];
-    fileWidgetCommand = "fd --type f --color=never --hidden";
-    fileWidgetOptions = [ "--preview 'bat --color=always --line-range :500 {}'" ];
-  };
 
   programs.zsh = {
     enable = true;
@@ -65,10 +60,11 @@
       ls        = "ls -G";
       ll        = "ls -lGh";
       la        = "ls -laGh";
-      vim         = "nvim";
+      gs        = "git status";
+      vim       = "nvim";
       lv        = "nvim -c \"normal '0\" -c bd1";
       ffe       = "fzf_edit"; 
-      fcd       = "fzf_change_directory";
+      ffd       = "cd $(fzf_directory)";
       dotfiles  = "/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME";
       dot       = "dotfiles";
       dotls     = "dotfiles ls-tree -r --full-tree";
@@ -79,6 +75,15 @@
     defaultKeymap = "viins";
   };
 
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+    defaultCommand = "fd --type f --color=never --hidden";
+    defaultOptions = [ "--height 75% --multi --reverse --bind ctrl-f:page-down,ctrl-b:page-up" ];
+    fileWidgetCommand = "fd --type f --color=never --hidden";
+    fileWidgetOptions = [ "--preview 'bat --color=always --line-range :500 {}'" ];
+  };
+  
   programs.git = {
     enable = true;
     userName = "raphjaph";

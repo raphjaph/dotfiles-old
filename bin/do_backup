@@ -1,0 +1,28 @@
+#!/usr/bin/env bash 
+
+# for complete synchronization add --delete option
+
+WORKDIR=/Users/raphael/
+DEST=/Volumes/Backup/macbook/
+COMMAND="rsync -azP" #--delete" 
+Directories=(
+'.zshrc'
+'.config'
+'.tmux.conf'
+'Brewfile'
+'allApps.txt'
+'website'
+'notes'
+'Desktop'
+'Documents'
+'projects'
+'log'
+'books'
+'bin'
+'backups'
+)
+
+for dir in "${Directories[@]}"; do
+  $COMMAND $@ $WORKDIR$dir $DEST
+done
+

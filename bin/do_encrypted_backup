@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+# 1. open Veracrypt first and select the VeraCryptContainer in /Volumes/Backup
+# 2. Decrypt with password
+# 3. Run this script
+# 4. for complete synchronization add --delete option
+# 5. Dismount in veracrypt app
+
+WORKDIR=/Users/raphael/
+DEST=/Volumes/encrypted/macbook/
+COMMAND="rsync -azP" 
+Directories=(
+'.electrum'
+'.sparrow'
+'.gnupg'
+'.ssh'
+)
+
+for dir in "${Directories[@]}"; do
+  $COMMAND $@ $WORKDIR$dir $DEST
+done
+
