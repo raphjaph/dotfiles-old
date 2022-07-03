@@ -65,6 +65,7 @@
       lv        = "nvim -c \"normal '0\" -c bd1";
       ffe       = "fzf_edit"; 
       ffd       = "cd $(fzf_directory)";
+      sn        = "search_notes";
       dotfiles  = "/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME";
       dot       = "dotfiles";
       dotls     = "dotfiles ls-tree -r --full-tree";

@@ -1,4 +1,4 @@
-set -exo pipefail
+set -euo pipefail
 
 file=$(
   fzf --no-multi --select-1 --exit-0 \
