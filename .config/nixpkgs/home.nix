@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 {
   home = {
+    username = "raphael";
+    homeDirectory = "/Users/raphael";
     packages = with pkgs; [
       asciiquarium
       bat
@@ -21,6 +23,8 @@
       pfetch
       pstree
       python3
+#      python310Packages.pip 
+#      python310Packages.libtmux 
       qrencode
       reattach-to-user-namespace
       ripgrep
@@ -42,6 +46,7 @@
       VIMINIT               = "source $MYVIMRC";
     }; 
     sessionPath = [ "$HOME/bin" ];
+    stateVersion = "21.11";
   };
   
 
@@ -65,6 +70,7 @@
       lv        = "nvim -c \"normal '0\" -c bd1";
       ffe       = "fzf_edit"; 
       ffd       = "cd $(fzf_directory)";
+      hm        = "home-manager";
       sn        = "search_notes";
       dotfiles  = "/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME";
       dot       = "dotfiles";
