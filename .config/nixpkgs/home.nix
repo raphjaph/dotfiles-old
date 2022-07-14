@@ -23,8 +23,6 @@
       pfetch
       pstree
       python3
-#      python310Packages.pip 
-#      python310Packages.libtmux 
       qrencode
       reattach-to-user-namespace
       ripgrep

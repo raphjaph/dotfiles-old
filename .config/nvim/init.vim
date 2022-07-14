@@ -83,6 +83,9 @@ Plug 'airblade/vim-gitgutter'
 
 call plug#end()
 
+autocmd filetype markdown syn region match start=/\\$\\$/ end=/\\$\\$/
+autocmd filetype markdown syn match math '\\$[^$].\{-}\$'
+
 
 colorscheme PaperColor
 set background=dark
