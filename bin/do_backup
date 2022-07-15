@@ -1,6 +1,7 @@
 #!/usr/bin/env bash 
 
-set -eou pipefail
+# set -eou pipefail
+set -ou pipefail
 
 # for complete synchronization add --delete option
 
