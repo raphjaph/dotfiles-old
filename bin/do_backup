@@ -1,25 +1,27 @@
 #!/usr/bin/env bash 
 
+set -eou pipefail
+
 # for complete synchronization add --delete option
 
 WORKDIR=/Users/raphael/
 DEST=/Volumes/Backup/macbook/
-COMMAND="rsync -azP" #--delete" 
+COMMAND="rsync -azP" # --delete" 
 Directories=(
-'.zshrc'
 '.config'
-'.tmux.conf'
+'.zshrc'
 'Brewfile'
-'allApps.txt'
-'website'
-'notes'
 'Desktop'
 'Documents'
-'projects'
-'log'
-'books'
-'bin'
+'allApps.txt'
 'backups'
+'bin'
+'bookmarks.txt'
+'books'
+'browserHist.txt'
+'log'
+'notes'
+'projects'
 )
 
 for dir in "${Directories[@]}"; do
