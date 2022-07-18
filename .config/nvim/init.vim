@@ -51,10 +51,10 @@ call plug#begin('~/.config/nvim/autoload')
 Plug 'NLKNguyen/papercolor-theme'
 
 " Telescope
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+" Plug 'nvim-lua/popup.nvim'
+" Plug 'nvim-lua/plenary.nvim'
+" Plug 'nvim-telescope/telescope.nvim'
+" Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
 " Native LSP
 Plug 'neovim/nvim-lspconfig'
@@ -66,7 +66,7 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 
 " language support and code completion
-Plug 'fatih/vim-go'
+" Plug 'fatih/vim-go'
 "Plug 'sheerun/vim-polyglot'
 "Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'LnL7/vim-nix'
@@ -75,7 +75,7 @@ Plug 'LnL7/vim-nix'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " Markdown Viewer: requires nodejs and yarn
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+"Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 
 " Git stuff
 Plug 'tpope/vim-fugitive'
@@ -83,15 +83,11 @@ Plug 'airblade/vim-gitgutter'
 
 call plug#end()
 
-autocmd filetype markdown syn region match start=/\\$\\$/ end=/\\$\\$/
-autocmd filetype markdown syn match math '\\$[^$].\{-}\$'
-
-
 colorscheme PaperColor
 set background=dark
 
 
-lua require('raphjaph')
+" lua require('raphjaph')
 "==============================================================================
 " MY MAPPINGS
 " <leader> is the \ by default -> change to space
