@@ -18,7 +18,7 @@
       htop
       jq
       neovim
-      netcat
+# broken:     netcat
       pdfgrep
       pfetch
       pstree
@@ -42,8 +42,13 @@
       VISUAL                = "nvim";
       MYVIMRC               = "$HOME/.config/nvim/init.vim";
       VIMINIT               = "source $MYVIMRC";
+      TERM                  = "alacritty";
     }; 
-    sessionPath = [ "$HOME/bin" ];
+    sessionPath = [ 
+      "$HOME/bin"
+      "/usr/local/bin"
+      "/usr/local/sbin"
+    ];
     stateVersion = "21.11";
   };
   
@@ -70,6 +75,7 @@
       ffd       = "cd $(fzf_directory)";
       hm        = "home-manager";
       sn        = "search_notes";
+      h         = "help"; 
       dotfiles  = "/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME";
       dot       = "dotfiles";
       dotls     = "dotfiles ls-tree -r --full-tree";

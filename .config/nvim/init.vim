@@ -35,9 +35,10 @@ set shortmess+=c            " don't give |ins-completion-menu| messages.
 set signcolumn=yes          " always show signcolumns (left of numbers)
 
 
+set foldmethod=indent
 set foldlevel=99
-set foldmethod=syntax
-set foldclose=all
+set nofoldenable
+"set foldclose=all
 
 "set modelines=1   "https://dougblack.io/words/a-good-vimrc.html
 
@@ -82,9 +83,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
 call plug#end()
-
-autocmd filetype markdown syn region match start=/\\$\\$/ end=/\\$\\$/
-autocmd filetype markdown syn match math '\\$[^$].\{-}\$'
 
 
 colorscheme PaperColor
