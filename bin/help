@@ -2,4 +2,5 @@
 
 set -euo pipefail
 
-curl -s cheat.sh/$@ | bat --style="plain" --paging=always
+curl -s cheat.sh/$@ 
+#bat --style="plain" --paging=always
