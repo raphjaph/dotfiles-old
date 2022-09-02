@@ -1,8 +1,12 @@
 { config, pkgs, ... }:
+let 
+  username = "raphael";
+  home = "/Users/raphael";
+in
 {
   home = {
-    username = "raphael";
-    homeDirectory = "/Users/raphael";
+    username = username;
+    homeDirectory = home;
     packages = with pkgs; [
       asciiquarium
       bat
@@ -11,6 +15,7 @@
       fd
       ffmpeg
       fzf
+      skim
       git
       gnupg
       go
@@ -18,7 +23,6 @@
       htop
       jq
       neovim
-# broken:     netcat
       pdfgrep
       pfetch
       pstree
@@ -33,8 +37,9 @@
       tmux
       tree
       wget
-#      hugo
-#      python310Packages.howdoi
+# broken:     hugo
+# broken:     netcat
+# broken:     python310Packages.howdoi
     ];
     
     sessionVariables = {
@@ -65,28 +70,41 @@
       setopt inc_append_history
     '';
     shellAliases = {
-      ls        = "ls -G";
-      ll        = "ls -lGh";
-      la        = "ls -laGh";
-      gs        = "git status";
-      vim       = "nvim";
-      lv        = "nvim -c \"normal '0\" -c bd1";
-      ffe       = "fzf_edit"; 
-      ffd       = "cd $(fzf_directory)";
-      hm        = "home-manager";
-      sn        = "search_notes";
-      h         = "help"; 
-      dotfiles  = "/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME";
+      b         = "bat --style=plain";
+      bp        = "bat --style=plain --paging=always";
       dot       = "dotfiles";
+      dotfiles  = "/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME";
       dotls     = "dotfiles ls-tree -r --full-tree";
-      qr        = "qrencode -t ansiutf8";
+      ffd       = "cd $(fzf_directory)";
+      ffe       = "fzf_edit"; 
+      gs        = "git status";
+      h         = "help"; 
+      hm        = "home-manager";
+      la        = "ls -laGh";
+      ll        = "ls -lGh";
+      ls        = "ls -G";
+      lv        = "nvim -c \"normal '0\" -c bd1";
       man       = "colorful_man";
+      o         = "open .";
+      qr        = "qrencode -t ansiutf8";
       s         = "source $HOME/.zshrc";
+      sn        = "search_notes";
+      update    = "home-manager switch && source $HOME/.zshrc";
+      vim       = "nvim";
     };
     defaultKeymap = "viins";
   };
 
-  programs.fzf = {
+#  programs.fzf = {
+#    enable = true;
+#    enableZshIntegration = true;
+#    defaultCommand = "fd --type f --color=never --hidden";
+#    defaultOptions = [ "--height 75% --multi --reverse --bind ctrl-f:page-down,ctrl-b:page-up" ];
+#    fileWidgetCommand = "fd --type f --color=never --hidden";
+#    fileWidgetOptions = [ "--preview 'bat --color=always --line-range :500 {}'" ];
+#  };
+
+  programs.skim = {
     enable = true;
     enableZshIntegration = true;
     defaultCommand = "fd --type f --color=never --hidden";
@@ -94,7 +112,7 @@
     fileWidgetCommand = "fd --type f --color=never --hidden";
     fileWidgetOptions = [ "--preview 'bat --color=always --line-range :500 {}'" ];
   };
-  
+
   programs.git = {
     enable = true;
     userName = "raphjaph";
