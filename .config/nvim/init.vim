@@ -1,10 +1,61 @@
 "==============================================================================
-" settings
+" PLUGINS
+"==============================================================================
+
+call plug#begin('~/.config/nvim/autoload')
+
+" Color Theme
+Plug 'NLKNguyen/papercolor-theme'
+
+" Telescope
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+Plug 'nvim-telescope/telescope-file-browser.nvim'
+
+" Treesitter (AST)
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+" Native LSP; collection of commmon configs
+Plug 'neovim/nvim-lspconfig'
+
+"LSP autocomplete; completion sources:
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+
+" language support and code completion
+Plug 'fatih/vim-go'
+"Plug 'sheerun/vim-polyglot'
+"Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'LnL7/vim-nix'
+Plug 'simrat39/rust-tools.nvim'
+
+
+" Markdown Viewer: requires nodejs and yarn
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+
+" Git stuff
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+
+call plug#end()
+
+
+
+
+"==============================================================================
+" VIMRC SETTINGS
 "==============================================================================
 syntax on                   " syntax highlighting
 filetype on
 filetype plugin on
 filetype indent on
+
+colorscheme PaperColor
+set background=dark
 
 set number                  " add line numbers
 set cc=80                   " set an 80 column border for good coding style
@@ -16,11 +67,12 @@ set scrolloff=20             " number of lines of context around cursor
 set ignorecase              " case insensitive 
 set incsearch               " incremental search
 
-set tabstop=4               " number of columns occupied by a tab 
-set softtabstop=4           " see multiple spaces as tabstops so <BS> does the right thing
-set shiftwidth=4            " width for autoindents
+set tabstop=2               " number of columns occupied by a tab 
+set softtabstop=2           " see multiple spaces as tabstops so <BS> does the right thing
+set shiftwidth=2            " width for autoindents
 set expandtab               " converts tabs to white space
 set autoindent              " indent a new line the same amount as the line just typed
+set smartindent
 
 set autoread
 set mouse=v                 " middle-click paste with 
@@ -35,65 +87,23 @@ set shortmess+=c            " don't give |ins-completion-menu| messages.
 set signcolumn=yes          " always show signcolumns (left of numbers)
 
 
-set foldmethod=indent
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
 set foldlevel=99
 set nofoldenable
+"set foldminlines=
+"set foldnestmax=
 "set foldclose=all
 
-"set modelines=1   "https://dougblack.io/words/a-good-vimrc.html
+
+" nvim/lua/config.lua
+lua require('config')
+
 
 "==============================================================================
-" plugins: using vim-plug
+" MAPPINGS
 "==============================================================================
 
-call plug#begin('~/.config/nvim/autoload')
-
-" Color Theme
-Plug 'NLKNguyen/papercolor-theme'
-
-" Telescope
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-
-" Native LSP
-Plug 'neovim/nvim-lspconfig'
-
-"LSP autocomplete
-Plug 'hrsh7th/nvim-cmp'
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
-
-" language support and code completion
-Plug 'fatih/vim-go'
-"Plug 'sheerun/vim-polyglot'
-"Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-Plug 'LnL7/vim-nix'
-
-" Treesitter (AST)
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-
-" Markdown Viewer: requires nodejs and yarn
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
-
-" Git stuff
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
-
-call plug#end()
-
-
-colorscheme PaperColor
-set background=dark
-
-
-lua require('raphjaph')
-"==============================================================================
-" MY MAPPINGS
-" <leader> is the \ by default -> change to space
-"==============================================================================
 let mapleader = " " 
 
 " reload and open init.vim
@@ -101,13 +111,13 @@ let mapleader = " "
 nnoremap <Leader>r :source $MYVIMRC <cr>
 nnoremap <silent> <Leader>e :e $MYVIMRC<cr>
 nnoremap <Leader>f :Telescope find_files<cr>
+nnoremap <Leader>g :Telescope live_grep<cr>
+nnoremap <F3> :Lexplore<cr>
 
-" MarkdownPreview
 nnoremap <Leader>m :MarkdownPreview<CR>
-" do not close the preview tab when switching to other buffers
-let g:mkdp_auto_close = 0
+let g:mkdp_auto_close = 0 " do not close the preview tab when switching to other buffers
 
-"
+
 " netrw stuff
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
