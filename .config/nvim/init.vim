@@ -28,11 +28,16 @@ Plug 'hrsh7th/cmp-path'
 
 " language support and code completion
 Plug 'fatih/vim-go'
-"Plug 'sheerun/vim-polyglot'
-"Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'LnL7/vim-nix'
 Plug 'simrat39/rust-tools.nvim'
+Plug 'dense-analysis/ale'
 
+" pretty and lightweight status and tab lines
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+" Vim Tmux splits
+Plug 'christoomey/vim-tmux-navigator'
 
 " Markdown Viewer: requires nodejs and yarn
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
@@ -43,80 +48,131 @@ Plug 'airblade/vim-gitgutter'
 
 call plug#end()
 
-
-
-
 "==============================================================================
 " VIMRC SETTINGS
 "==============================================================================
+colorscheme PaperColor
+set background=dark
+
 syntax on                   " syntax highlighting
 filetype on
 filetype plugin on
 filetype indent on
 
-colorscheme PaperColor
-set background=dark
-
-set number                  " add line numbers
-set cc=80                   " set an 80 column border for good coding style
-set ma
-set showmatch               " show matching 
-set cursorline              " highlight current cursorline
-set scrolloff=20             " number of lines of context around cursor
-
-set ignorecase              " case insensitive 
-set incsearch               " incremental search
-
-set tabstop=2               " number of columns occupied by a tab 
-set softtabstop=2           " see multiple spaces as tabstops so <BS> does the right thing
-set shiftwidth=2            " width for autoindents
-set expandtab               " converts tabs to white space
 set autoindent              " indent a new line the same amount as the line just typed
-set smartindent
-
 set autoread
-set mouse=v                 " middle-click paste with 
-set mouse=a                 " enable mouse click
-set clipboard=unnamedplus   " using system clipboard
-set splitright              " split new window to right
-set t_Co=256
-
+set breakindent             " show soft-wrapped text with leading indent
+set cursorline              " highlight current cursorline
+set expandtab               " converts tabs to white space
 set hidden                  " if hidden is not set, TextEdit might fail.
-set updatetime=300          " Smaller updatetime for CursorHold & CursorHoldI
-set shortmess+=c            " don't give |ins-completion-menu| messages.
-set signcolumn=yes          " always show signcolumns (left of numbers)
+set ignorecase              " case insensitive
+set incsearch               " incremental search
+set linebreak               " break on characters in 'breakat'
+set ma
+set nofoldenable
+set number                  " add line numbers
+set ruler                   " show position in file
+set shiftround              " round < and > to multiples of shiftwidth
+set showmatch               " show matching
+set smartcase
+set smartindent
+set smarttab
+set splitright              " split new window to right
+set ttyfast                 " make updates smoother but use more characters
 
 
-set foldmethod=expr
+set cc=80                   " set an 80 column border for good coding style
+set clipboard=unnamedplus   " using system clipboard
 set foldexpr=nvim_treesitter#foldexpr()
 set foldlevel=99
-set nofoldenable
-"set foldminlines=
-"set foldnestmax=
-"set foldclose=all
+set foldmethod=expr
+set history=10000           " lines of history to remember
+set mouse=a                 " enable mouse click
+set mouse=v                 " middle-click paste with
+set scrolloff=20            " number of lines of context around cursor
+set shortmess+=c            " don't give |ins-completion-menu| messages.
+set signcolumn=yes          " always show signcolumns (left of numbers)
+set t_Co=256
+set undolevels=10000        " remember last 10000 changes
+set updatetime=250          " set update time to 250ms
 
+set formatoptions+=2        " use paragraph second line indent
+set formatoptions+=j        " merge comments when joining lines
+set formatoptions+=q        " allow formatting comments with `gq`
+set formatoptions+=r        " insert comment leader after <enter> in insert mode
+set formatoptions+=t        " auto-wrap at textwidth
+set formatoptions-=a        " disable automatic formatting of paragraphs
+set formatoptions-=c        " don't auto-wrap comments at textwidth
+set formatoptions-=l        " format long lines when inserting
 
-" nvim/lua/config.lua
-lua require('config')
+function! Indent(n)
+  if a:n == 0
+    set noexpandtab
+  else
+    set expandtab
+    execute "set shiftwidth=".a:n
+    execute "set softtabstop=".a:n
+    execute "set tabstop=".a:n
+  endif
+endfunction
 
+"nvim/lua/config.lua
+lua require('init')
 
-"==============================================================================
-" MAPPINGS
-"==============================================================================
+"Rust Stuff
+let g:rust_recommended_style           = 0 " use 2 space instead of 4 space tabs
+let g:rustfmt_autosave                 = 0 " run rustfmt on save
+let g:ale_completion_enabled           = 0 " enable completion
+let g:ale_fix_on_save                  = 1 " fix on save
+let g:ale_lint_on_enter                = 0 " lint when entering a new file
+let g:ale_lint_on_filetype_changed     = 0 " don't lint on filetype changed
+let g:ale_lint_on_insert_leave         = 0 " don't lint when leaving insert mode
+let g:ale_lint_on_save                 = 0 " lint on save
+let g:ale_lint_on_text_changed         = 0 " don't lint when text is changed
+let g:ale_rust_cargo_check_all_targets = 1 " run cargo check with all targets
+let g:ale_set_highlights               = 0 " don't set highlights for lints
+let g:ale_set_loclist                  = 1 " set loclist for lints
+let g:ale_set_signs                    = 1 " set signs for lints
+let g:ale_fixers = {
+\ '*': ['remove_trailing_lines', 'trim_whitespace'],
+\ 'markdown': ['remove_trailing_lines'],
+\ 'mail': ['remove_trailing_lines'],
+\ 'rust': ['rustfmt'],
+\}
+let g:ale_linters = { 'rust': ['rls'], 'fish': [] }
 
-let mapleader = " " 
-
-" reload and open init.vim
-" | is the :bar or <BAR> command to execute two commands
-nnoremap <Leader>r :source $MYVIMRC <cr>
-nnoremap <silent> <Leader>e :e $MYVIMRC<cr>
-nnoremap <Leader>f :Telescope find_files<cr>
-nnoremap <Leader>g :Telescope live_grep<cr>
-nnoremap <F3> :Lexplore<cr>
-
-nnoremap <Leader>m :MarkdownPreview<CR>
-let g:mkdp_auto_close = 0 " do not close the preview tab when switching to other buffers
-
+" Airlines Status Bar and Tabs
+let g:airline_theme = 'base16_flat'
+let g:airline#extensions#ale#enabled = 1 " enable ale extension
+let g:airline#extensions#tabline#buffer_idx_mode = 1 " show buffer indices
+let g:airline#extensions#tabline#buffer_min_count = 2 " no tabline for less than 2 buffers
+let g:airline#extensions#tabline#buffer_nr_show = 0 " don't show buffer numbers
+let g:airline#extensions#tabline#buffers_label = '' " hide buffers label
+let g:airline#extensions#tabline#enabled = 0 " disable the tabline
+let g:airline#extensions#tabline#left_alt_sep = '' " hide left alt separator
+let g:airline#extensions#tabline#left_sep = '' " hide left separator
+let g:airline#extensions#tabline#right_alt_sep = '' " hide right alt separator
+let g:airline#extensions#tabline#right_sep = '' " hide right separator
+let g:airline#extensions#tabline#show_buffers = 1 " show buffers when no tabs are open
+let g:airline#extensions#tabline#show_close_button = 0 " don't show close button
+let g:airline#extensions#tabline#show_splits = 0 " don't show tab name on right
+let g:airline#extensions#tabline#show_tab_nr = 0 " don't show tab number
+let g:airline#extensions#tabline#show_tab_type = 0 " don't show tab type
+let g:airline#extensions#whitespace#enabled = 0 " turn off whitespace checker
+let g:airline_detect_modified = 1 " highlight modified buffers
+let g:airline_left_sep = '' " turn off left separator
+let g:airline_powerline_fonts = 1 " fixes missing whitespace in tabline
+let g:airline_right_sep = '' " turn off right separator
+let g:airline_skip_empty_sections = 1 " hide empty sections
+"nmap <leader>1 <plug>AirlineSelectTab1
+"nmap <leader>2 <plug>AirlineSelectTab2
+"nmap <leader>3 <plug>AirlineSelectTab3
+"nmap <leader>4 <plug>AirlineSelectTab4
+"nmap <leader>5 <plug>AirlineSelectTab5
+"nmap <leader>6 <plug>AirlineSelectTab6
+"nmap <leader>7 <plug>AirlineSelectTab7
+"nmap <leader>8 <plug>AirlineSelectTab8
+"nmap <leader>9 <plug>AirlineSelectTab9
 
 " netrw stuff
 let g:netrw_banner = 0
@@ -125,66 +181,20 @@ let g:netrw_browse_split = 0
 let g:netrw_altv = 1
 let g:netrw_winsize = 20
 
-" -----------------------------------------------------------------------------
-" coc.nvim default settings
-" CoC (Code Completion)
-" define new LSPs (Language Servers in ~/.config/nvim/coc-setting.json)
-" -----------------------------------------------------------------------------
+"==============================================================================
+" MAPPINGS
+"==============================================================================
 
-" TODO: figure out tab completions for native LSP
+let mapleader = " "
 
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-"inoremap <silent><expr> <TAB>
-"      \ pumvisible() ? "\<C-n>" :
-"      \ <SID>check_back_space() ? "\<TAB>" :
-"      \ coc#refresh()
-"inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-"
-"function! s:check_back_space() abort
-"  let col = col('.') - 1
-"  return !col || getline('.')[col - 1]  =~# '\s'
-"endfunction
-"
-"" Use <c-space> to trigger completion.
-"inoremap <silent><expr> <c-space> coc#refresh()
-
-"" Use `[c` and `]c` to navigate diagnostics
-"nmap <silent> [c <Plug>(coc-diagnostic-prev)
-"nmap <silent> ]c <Plug>(coc-diagnostic-next)
-"
-"" Remap keys for gotos
-"nmap <silent> gd <Plug>(coc-definition)
-"nmap <silent> gy <Plug>(coc-type-definition)
-"nmap <silent> gi <Plug>(coc-implementation)
-"nmap <silent> gr <Plug>(coc-references)
-"
-"" Use U to show documentation in preview window
-"nnoremap <silent> U :call <SID>show_documentation()<CR>
-"
-"" Remap for rename current word
-"nmap <leader>rn <Plug>(coc-rename)
-"
-"" Remap for format selected region
-"vmap <leader>f  <Plug>(coc-format-selected)
-"nmap <leader>f  <Plug>(coc-format-selected)
-"" Show all diagnostics
-"nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-"" Manage extensions
-"nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-"" Show commands
-"nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-"" Find symbol of current document
-"nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-"" Search workspace symbols
-"nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-"" Do default action for next item.
-"nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-"" Do default action for previous item.
-"nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-"" Resume latest coc list
-"nnoremap <silent> <space>p  :<C-u>CocListResume<CR>n
-"
-"" disable vim-go :GoDef short cut (gd)
-"" this is handled by LanguageClient [LC]
-"let g:go_def_mapping_enabled = 0
+" reload and open init.vim
+" | is the :bar or <BAR> command to execute two commands
+nnoremap <Leader>r :source $MYVIMRC <cr>
+nnoremap <silent> <Leader>e :e $MYVIMRC <cr>
+nnoremap <Leader>f :Telescope find_files<cr>
+nnoremap <Leader>g :Telescope live_grep<cr>
+nnoremap <F3> :Lexplore<cr>
+nnoremap <Leader>n :bnext<cr>
+nnoremap <Leader>p :bprev<cr>
+nnoremap <silent> <esc> :noh<return><esc>
+nnoremap <esc>^[ <esc>^[

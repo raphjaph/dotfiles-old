@@ -1,5 +1,5 @@
 { config, pkgs, ... }:
-let 
+let
   username = "raphael";
   home = "/Users/raphael";
 in
@@ -41,22 +41,22 @@ in
 # broken:     netcat
 # broken:     python310Packages.howdoi
     ];
-    
+
     sessionVariables = {
       EDITOR                = "nvim";
       VISUAL                = "nvim";
       MYVIMRC               = "$HOME/.config/nvim/init.vim";
       VIMINIT               = "source $MYVIMRC";
       TERM                  = "alacritty";
-    }; 
-    sessionPath = [ 
+    };
+    sessionPath = [
       "$HOME/bin"
       "/usr/local/bin"
       "/usr/local/sbin"
     ];
     stateVersion = "21.11";
   };
-  
+
 
   programs.zsh = {
     enable = true;
@@ -64,21 +64,25 @@ in
     enableAutosuggestions = true;
     enableSyntaxHighlighting = true;
     initExtra = ''
-      PROMPT=$'\n%F{green}%n@%m%f %B%F{cyan}%~%f%b\n> '
-     
+      PROMPT=$'\n%F{green}%m%f %B%F{cyan}%~%f%b\n> '
+
       # share history between windows/panes
       setopt inc_append_history
     '';
     shellAliases = {
       b         = "bat --style=plain";
       bp        = "bat --style=plain --paging=always";
+      c         = "clear";
       dot       = "dotfiles";
       dotfiles  = "/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME";
       dotls     = "dotfiles ls-tree -r --full-tree";
       ffd       = "cd $(fzf_directory)";
-      ffe       = "fzf_edit"; 
+      ffe       = "fzf_edit";
       gs        = "git status";
-      h         = "help"; 
+      gc        = "git commit --verbose";
+      gap       = "git add -p";
+      gcb       = "git checkout -b";
+      h         = "help";
       hm        = "home-manager";
       la        = "ls -laGh";
       ll        = "ls -lGh";
@@ -118,7 +122,7 @@ in
     userName = "raphjaph";
     userEmail = "raphjaph@protonmail.com";
   };
-  
+
   nixpkgs.config.allowUnfree = true;
   programs.home-manager.enable = true;
 }
