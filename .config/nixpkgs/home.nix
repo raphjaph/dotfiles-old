@@ -41,10 +41,9 @@ in
 # broken:     netcat
 # broken:     python310Packages.howdoi
     ];
-
     sessionVariables = {
-      EDITOR                = "nvim";
-      VISUAL                = "nvim";
+      EDITOR                = "hx";
+      VISUAL                = "hx";
       MYVIMRC               = "$HOME/.config/nvim/init.vim";
       VIMINIT               = "source $MYVIMRC";
       TERM                  = "alacritty";
@@ -56,7 +55,6 @@ in
     ];
     stateVersion = "21.11";
   };
-
 
   programs.zsh = {
     enable = true;
@@ -82,7 +80,7 @@ in
       gc        = "git commit --verbose";
       gap       = "git add -p";
       gcb       = "git checkout -b";
-      h         = "help";
+      h         = "hx";
       hm        = "home-manager";
       la        = "ls -laGh";
       ll        = "ls -lGh";

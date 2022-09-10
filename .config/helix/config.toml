@@ -1,0 +1,16 @@
+theme = "gruvbox"
+
+[editor]
+scrolloff = 5
+cursorline = true
+
+[editor.statusline]
+
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "block"
+
+[editor.file-picker]
+hidden = true

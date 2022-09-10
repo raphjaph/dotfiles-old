@@ -120,26 +120,26 @@ endfunction
 lua require('init')
 
 "Rust Stuff
-let g:rust_recommended_style           = 0 " use 2 space instead of 4 space tabs
-let g:rustfmt_autosave                 = 0 " run rustfmt on save
-let g:ale_completion_enabled           = 0 " enable completion
-let g:ale_fix_on_save                  = 1 " fix on save
-let g:ale_lint_on_enter                = 0 " lint when entering a new file
-let g:ale_lint_on_filetype_changed     = 0 " don't lint on filetype changed
-let g:ale_lint_on_insert_leave         = 0 " don't lint when leaving insert mode
-let g:ale_lint_on_save                 = 0 " lint on save
-let g:ale_lint_on_text_changed         = 0 " don't lint when text is changed
-let g:ale_rust_cargo_check_all_targets = 1 " run cargo check with all targets
-let g:ale_set_highlights               = 0 " don't set highlights for lints
-let g:ale_set_loclist                  = 1 " set loclist for lints
-let g:ale_set_signs                    = 1 " set signs for lints
-let g:ale_fixers = {
-\ '*': ['remove_trailing_lines', 'trim_whitespace'],
-\ 'markdown': ['remove_trailing_lines'],
-\ 'mail': ['remove_trailing_lines'],
-\ 'rust': ['rustfmt'],
-\}
-let g:ale_linters = { 'rust': ['rls'], 'fish': [] }
+"let g:rust_recommended_style           = 0 " use 2 space instead of 4 space tabs
+"let g:rustfmt_autosave                 = 0 " run rustfmt on save
+"let g:ale_completion_enabled           = 0 " enable completion
+"let g:ale_fix_on_save                  = 1 " fix on save
+"let g:ale_lint_on_enter                = 0 " lint when entering a new file
+"let g:ale_lint_on_filetype_changed     = 0 " don't lint on filetype changed
+"let g:ale_lint_on_insert_leave         = 0 " don't lint when leaving insert mode
+"let g:ale_lint_on_save                 = 0 " lint on save
+"let g:ale_lint_on_text_changed         = 0 " don't lint when text is changed
+"let g:ale_rust_cargo_check_all_targets = 1 " run cargo check with all targets
+"let g:ale_set_highlights               = 0 " don't set highlights for lints
+"let g:ale_set_loclist                  = 1 " set loclist for lints
+"let g:ale_set_signs                    = 1 " set signs for lints
+"let g:ale_fixers = {
+"\ '*': ['remove_trailing_lines', 'trim_whitespace'],
+"\ 'markdown': ['remove_trailing_lines'],
+"\ 'mail': ['remove_trailing_lines'],
+"\ 'rust': ['rustfmt'],
+"\}
+"let g:ale_linters = { 'rust': ['rls'], 'fish': [] }
 
 " Airlines Status Bar and Tabs
 let g:airline_theme = 'base16_flat'
@@ -164,15 +164,15 @@ let g:airline_left_sep = '' " turn off left separator
 let g:airline_powerline_fonts = 1 " fixes missing whitespace in tabline
 let g:airline_right_sep = '' " turn off right separator
 let g:airline_skip_empty_sections = 1 " hide empty sections
-"nmap <leader>1 <plug>AirlineSelectTab1
-"nmap <leader>2 <plug>AirlineSelectTab2
-"nmap <leader>3 <plug>AirlineSelectTab3
-"nmap <leader>4 <plug>AirlineSelectTab4
-"nmap <leader>5 <plug>AirlineSelectTab5
-"nmap <leader>6 <plug>AirlineSelectTab6
-"nmap <leader>7 <plug>AirlineSelectTab7
-"nmap <leader>8 <plug>AirlineSelectTab8
-"nmap <leader>9 <plug>AirlineSelectTab9
+nmap <leader>1 <plug>AirlineSelectTab1
+nmap <leader>2 <plug>AirlineSelectTab2
+nmap <leader>3 <plug>AirlineSelectTab3
+nmap <leader>4 <plug>AirlineSelectTab4
+nmap <leader>5 <plug>AirlineSelectTab5
+nmap <leader>6 <plug>AirlineSelectTab6
+nmap <leader>7 <plug>AirlineSelectTab7
+nmap <leader>8 <plug>AirlineSelectTab8
+nmap <leader>9 <plug>AirlineSelectTab9
 
 " netrw stuff
 let g:netrw_banner = 0

@@ -42,7 +42,7 @@ for _, server in ipairs(servers) do
     on_attach = function(client)
         -- n=normal mode , K= key to press, shows suggestions, buffer=0 only in current buffer
         vim.keymap.set("n", "gd", vim.lsp.buf.definition, {buffer=0})
-        vim.keymap.set("n", "gt", vim.lsp.buf.hover, {buffer=0})
+        vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer=0})
         vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", {buffer=0})
         vim.keymap.set("n", "gn", vim.diagnostic.goto_next, {buffer=0})
         vim.keymap.set("n", "gp", vim.diagnostic.goto_prev, {buffer=0})
