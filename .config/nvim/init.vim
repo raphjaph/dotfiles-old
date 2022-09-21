@@ -27,10 +27,10 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 
 " language support and code completion
-Plug 'fatih/vim-go'
-Plug 'LnL7/vim-nix'
-Plug 'simrat39/rust-tools.nvim'
-Plug 'dense-analysis/ale'
+"Plug 'fatih/vim-go'
+"Plug 'LnL7/vim-nix'
+"Plug 'simrat39/rust-tools.nvim'
+"Plug 'dense-analysis/ale'
 
 " pretty and lightweight status and tab lines
 Plug 'vim-airline/vim-airline'
@@ -38,9 +38,6 @@ Plug 'vim-airline/vim-airline-themes'
 
 " Vim Tmux splits
 Plug 'christoomey/vim-tmux-navigator'
-
-" Markdown Viewer: requires nodejs and yarn
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 
 " Git stuff
 Plug 'tpope/vim-fugitive'
@@ -51,6 +48,9 @@ Plug 'tpope/vim-sleuth'
 
 " Wrapping soft/hard
 Plug 'andrewferrier/wrapping.nvim'
+
+" Quick commenting
+Plug 'terrortylor/nvim-comment'
 
 call plug#end()
 
@@ -115,6 +115,13 @@ set formatoptions-=l        " format long lines when inserting
 "nvim/lua/config.lua
 lua require('init')
 
+" netrw stuff
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 0
+let g:netrw_altv = 1
+let g:netrw_winsize = 20
+
 "Rust Stuff
 "let g:rust_recommended_style           = 0 " use 2 space instead of 4 space tabs
 "let g:rustfmt_autosave                 = 0 " run rustfmt on save
@@ -160,37 +167,14 @@ let g:airline_theme = 'base16_default_dark'
 "let g:airline_powerline_fonts = 1 " fixes missing whitespace in tabline
 "let g:airline_right_sep = '' " turn off right separator
 "let g:airline_skip_empty_sections = 1 " hide empty sections
-nmap <leader>1 <plug>AirlineSelectTab1
-nmap <leader>2 <plug>AirlineSelectTab2
-nmap <leader>3 <plug>AirlineSelectTab3
-nmap <leader>4 <plug>AirlineSelectTab4
-nmap <leader>5 <plug>AirlineSelectTab5
-nmap <leader>6 <plug>AirlineSelectTab6
-nmap <leader>7 <plug>AirlineSelectTab7
-nmap <leader>8 <plug>AirlineSelectTab8
-nmap <leader>9 <plug>AirlineSelectTab9
+"nmap <leader>1 <plug>AirlineSelectTab1
+"nmap <leader>2 <plug>AirlineSelectTab2
+"nmap <leader>3 <plug>AirlineSelectTab3
+"nmap <leader>4 <plug>AirlineSelectTab4
+"nmap <leader>5 <plug>AirlineSelectTab5
+"nmap <leader>6 <plug>AirlineSelectTab6
+"nmap <leader>7 <plug>AirlineSelectTab7
+"nmap <leader>8 <plug>AirlineSelectTab8
+"nmap <leader>9 <plug>AirlineSelectTab9
 
-" netrw stuff
-let g:netrw_banner = 0
-let g:netrw_liststyle = 3
-let g:netrw_browse_split = 0
-let g:netrw_altv = 1
-let g:netrw_winsize = 20
 
-"==============================================================================
-" MAPPINGS
-"==============================================================================
-
-let mapleader = " "
-
-" reload and open init.vim
-" | is the :bar or <BAR> command to execute two commands
-nnoremap <Leader>r :source $MYVIMRC <cr>
-nnoremap <silent> <Leader>e :e $MYVIMRC <cr>
-nnoremap <Leader>f :Telescope find_files<cr>
-nnoremap <Leader>g :Telescope live_grep<cr>
-nnoremap <F3> :Lexplore<cr>
-nnoremap <Leader>n :bnext<cr>
-nnoremap <Leader>p :bprev<cr>
-nnoremap <silent> <esc> :noh<return><esc>
-nnoremap <esc>^[ <esc>^[

@@ -1,63 +1,117 @@
 -- Telescope (fzf, viewer and other powerful stuff)
 require("telescope").setup({})
 require("telescope").load_extension("fzf")
+require('nvim_comment').setup()
 
 -- Treesitter (highlighting, folding, indentation, selection)
 require('nvim-treesitter.configs').setup({
-    highlight = {
-        enable = true,
+  ensure_installed = {
+    "c",
+    "lua",
+    "rust",
+    "python",
+    "toml",
+    "nix",
+    "go",
+  },
+  highlight = {
+    enable = true,
+  },
+  indent = {
+    enable = true
+  },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "<cr>",
+      node_incremental = "<cr>",
+      scope_incremental = "<tab>",
+      node_decremental = "<bs>",
     },
-    indent = {
-        enable = true
-    },
-    incremental_selection = {
-        enable = true,
-        keymaps = {
-            init_selection = "<cr>",
-            node_incremental = "<cr>",
-            scope_incremental = "<tab>",
-            node_decremental = "<bs>",
-        },
-    },
+  },
+  additional_vim_regex_highlighting = false,
 })
+
+-- =============================================================================
+-- Mappings
+-- =============================================================================
+-- | is the :bar or <BAR> command to execute two commands
+--nnoremap <Leader>r :source $VIMRC <cr>
+--nnoremap <silent> <Leader>e :e $MYVIMRC <cr>
+--nnoremap <Leader>f :Telescope find_files<cr>
+--nnoremap <Leader>g :Telescope live_grep<cr>
+--nnoremap <F3> :Lexplore<cr>
+--nnoremap <Leader>n :bnext<cr>
+--nnoremap <Leader>p :bprev<cr>
+--nnoremap <silent> <esc> :noh<return><esc>
+--nnoremap <esc>^[ <esc>^[
+
+
+local opts = { noremap=true, silent=true }
+vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+vim.keymap.set('n', '<space>s', "<cmd>source ~/.config/nvim/init.vim<cr> | <cmd>PlugInstall<cr>", opts)
+vim.keymap.set('n', '<space>er', "<cmd>edit ~/.config/nvim/init.vim<cr>", opts)
+vim.keymap.set('n', '<space>el', "<cmd>edit ~/.config/nvim/lua/init.lua<cr>", opts)
+vim.keymap.set('n', '<space>f', "<cmd>Telescope find_files<cr>", opts)
+vim.keymap.set('n', '<space>g', "<cmd>Telescope live_grep<cr>", opts)
+vim.keymap.set('n', 'gn', "<cmd>bnext<cr>", opts)
+vim.keymap.set('n', 'gp', "<cmd>bprev<cr>", opts)
+vim.keymap.set('n', '<esc>', "<cmd>noh<return><esc>", opts)
+vim.keymap.set('n', '<esc>^[', "<esc>^[", opts)
+vim.keymap.set('n', '<C-c>', "<cmd>CommentToggle<cr>", opts)
+vim.keymap.set('v', '<C-c>', "<cmd>'<,'>CommentToggle<cr>", opts)
 
 -- =============================================================================
 -- Native LSP
 -- =============================================================================
+-- Use an on_attach function to only map the following keys
+-- after the language server attaches to the current buffer
+local on_attach = function(client, bufnr)
+  -- Enable completion triggered by <c-x><c-o>
+  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
--- connect to LSP through lspconfig plugin (set defaults)
-local lsp = require("lspconfig")
+  -- Mappings.
+  -- See `:help vim.lsp.*` for documentation on any of the below functions
+  local bufopts = { noremap=true, silent=true, buffer=bufnr }
+  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+  vim.keymap.set('n', 'gy', vim.lsp.buf.type_definition, bufopts)
+  vim.keymap.set('n', 'gr', "<cmd>Telescope lsp_references<cr>", bufopts)
+  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+  vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+  vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+  vim.keymap.set('n', '<space>wl', function()
+    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+  end, bufopts) 
+  vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
+  vim.keymap.set('n', '<space>a', vim.lsp.buf.code_action, bufopts)
+  vim.keymap.set('n', '<space>=', vim.lsp.buf.formatting, bufopts)
+end
 
 local servers = {
-    "rust_analyzer",
-    "gopls",
-----  "pyright",
-----  "sumneko_lua",
-----  "taplo"
+  "rust_analyzer",
+  "gopls",
+---  "pyright",
+---  "sumneko_lua",
+---  "taplo"
 }
---
 for _, server in ipairs(servers) do
-  lsp[server].setup{
-    capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
-    on_attach = function(client)
-        -- n=normal mode , K= key to press, shows suggestions, buffer=0 only in current buffer
-        vim.keymap.set("n", "gd", vim.lsp.buf.definition, {buffer=0})
-        vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer=0})
-        vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", {buffer=0})
-        vim.keymap.set("n", "gn", vim.diagnostic.goto_next, {buffer=0})
-        vim.keymap.set("n", "gp", vim.diagnostic.goto_prev, {buffer=0})
-        vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {buffer=0})
-        vim.keymap.set("n", "<leader>=", vim.lsp.buf.formatting, {buffer=0})
-        vim.keymap.set("n", "gy", vim.lsp.buf.type_definition, {buffer=0})
-        vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {buffer=0})
-    end,
+  -- connect to LSP through lspconfig plugin (set defaults)
+  require("lspconfig")[server].setup{
+    --capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+    on_attach = on_attach,
   }
 end
 --
 --
 ---- LSP Autocomplete (nvim-cmp)
 ---- It collects suggestions from source (lsp servers) and lists them
-vim.opt.completeopt={"menu", "menuone", "noselect"}
+--vim.opt.completeopt={"menu", "menuone", "noselect"}
 local cmp = require'cmp'
 --cmp.setup({
 --    snippet = {

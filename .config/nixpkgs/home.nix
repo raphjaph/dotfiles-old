@@ -68,7 +68,6 @@ in
       VISUAL="hx"
       MYVIMRC="$HOME/.config/nvim/init.vim"
       VIMINIT="source $MYVIMRC"
-      TERM="alacritty"
     '';
     shellAliases = {
       b         = "bat --style=plain";
@@ -124,9 +123,6 @@ in
     userName = "raphjaph";
     userEmail = "raphjaph@protonmail.com";
     delta.enable = true;
-    delta.options = ''
-      
-    '';
   };
 
   nixpkgs.config.allowUnfree = true;
