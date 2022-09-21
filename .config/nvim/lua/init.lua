@@ -1,9 +1,12 @@
+-- =============================================================================
 -- Telescope (fzf, viewer and other powerful stuff)
+-- =============================================================================
 require("telescope").setup({})
 require("telescope").load_extension("fzf")
-require('nvim_comment').setup()
 
+-- =============================================================================
 -- Treesitter (highlighting, folding, indentation, selection)
+-- =============================================================================
 require('nvim-treesitter.configs').setup({
   ensure_installed = {
     "c",
@@ -32,40 +35,50 @@ require('nvim-treesitter.configs').setup({
   additional_vim_regex_highlighting = false,
 })
 
--- =============================================================================
--- Mappings
--- =============================================================================
--- | is the :bar or <BAR> command to execute two commands
---nnoremap <Leader>r :source $VIMRC <cr>
---nnoremap <silent> <Leader>e :e $MYVIMRC <cr>
---nnoremap <Leader>f :Telescope find_files<cr>
---nnoremap <Leader>g :Telescope live_grep<cr>
---nnoremap <F3> :Lexplore<cr>
---nnoremap <Leader>n :bnext<cr>
---nnoremap <Leader>p :bprev<cr>
---nnoremap <silent> <esc> :noh<return><esc>
---nnoremap <esc>^[ <esc>^[
-
 
 local opts = { noremap=true, silent=true }
+
+
+-- =============================================================================
+-- Diagnostics
+-- =============================================================================
+
+vim.diagnostic.config {
+  virtual_text = false,
+  signs = true,
+  underline = true,
+}
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+
+
+-- =============================================================================
+-- Misc & Mappings
+-- =============================================================================
+
+-- | is the :bar or <BAR> command to execute two commands
 vim.keymap.set('n', '<space>s', "<cmd>source ~/.config/nvim/init.vim<cr> | <cmd>PlugInstall<cr>", opts)
-vim.keymap.set('n', '<space>er', "<cmd>edit ~/.config/nvim/init.vim<cr>", opts)
-vim.keymap.set('n', '<space>el', "<cmd>edit ~/.config/nvim/lua/init.lua<cr>", opts)
+vim.keymap.set('n', '<space>i', "<cmd>edit ~/.config/nvim/init.vim<cr> | <cmd>vs ~/.config/nvim/lua/init.lua<cr>", opts)
 vim.keymap.set('n', '<space>f', "<cmd>Telescope find_files<cr>", opts)
 vim.keymap.set('n', '<space>g', "<cmd>Telescope live_grep<cr>", opts)
 vim.keymap.set('n', 'gn', "<cmd>bnext<cr>", opts)
 vim.keymap.set('n', 'gp', "<cmd>bprev<cr>", opts)
 vim.keymap.set('n', '<esc>', "<cmd>noh<return><esc>", opts)
 vim.keymap.set('n', '<esc>^[', "<esc>^[", opts)
-vim.keymap.set('n', '<C-c>', "<cmd>CommentToggle<cr>", opts)
-vim.keymap.set('v', '<C-c>', "<cmd>'<,'>CommentToggle<cr>", opts)
+
+
 
 -- =============================================================================
--- Native LSP
+-- Comments
+-- =============================================================================
+require('nvim_comment').setup()
+vim.keymap.set('n', '<C-c>', "<cmd>CommentToggle<cr>", opts)
+
+
+-- =============================================================================
+-- LSP & Mappings
 -- =============================================================================
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -109,7 +122,9 @@ for _, server in ipairs(servers) do
 end
 --
 --
----- LSP Autocomplete (nvim-cmp)
+-- =============================================================================
+-- LSP Autocomplete (nvim-cmp)
+-- =============================================================================
 ---- It collects suggestions from source (lsp servers) and lists them
 --vim.opt.completeopt={"menu", "menuone", "noselect"}
 local cmp = require'cmp'
@@ -156,7 +171,6 @@ local cmp = require'cmp'
 --        { name = 'buffer' },
 --        })
 --})
-
 -- Set configuration for specific filetype.
 cmp.setup.filetype('gitcommit', {
     sources = cmp.config.sources({
@@ -165,3 +179,4 @@ cmp.setup.filetype('gitcommit', {
         { name = 'buffer' },
         })
 })
+

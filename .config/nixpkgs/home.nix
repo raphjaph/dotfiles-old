@@ -64,10 +64,8 @@ in
       setopt inc_append_history
       
       # set some env vars
-      EDITOR="hx"
-      VISUAL="hx"
-      MYVIMRC="$HOME/.config/nvim/init.vim"
-      VIMINIT="source $MYVIMRC"
+      export EDITOR=hx
+      export VISUAL=hx
     '';
     shellAliases = {
       b         = "bat --style=plain";
