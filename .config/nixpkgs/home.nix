@@ -11,7 +11,7 @@ in
       asciiquarium
       bat
       btop
-      curl
+      bitcoind
       fd
       ffmpeg
       fzf
@@ -20,6 +20,7 @@ in
       gnupg
       go
       gopls
+      helix
       htop
       jq
       neovim
@@ -30,6 +31,8 @@ in
       qrencode
       reattach-to-user-namespace
       ripgrep
+      rustup
+      rust-analyzer
       silver-searcher
       socat
       sshfs
@@ -41,13 +44,6 @@ in
 # broken:     netcat
 # broken:     python310Packages.howdoi
     ];
-    sessionVariables = {
-      EDITOR                = "hx";
-      VISUAL                = "hx";
-      MYVIMRC               = "$HOME/.config/nvim/init.vim";
-      VIMINIT               = "source $MYVIMRC";
-      TERM                  = "alacritty";
-    };
     sessionPath = [
       "$HOME/bin"
       "/usr/local/bin"
@@ -66,6 +62,13 @@ in
 
       # share history between windows/panes
       setopt inc_append_history
+      
+      # set some env vars
+      EDITOR="hx"
+      VISUAL="hx"
+      MYVIMRC="$HOME/.config/nvim/init.vim"
+      VIMINIT="source $MYVIMRC"
+      TERM="alacritty"
     '';
     shellAliases = {
       b         = "bat --style=plain";
@@ -88,6 +91,7 @@ in
       lv        = "nvim -c \"normal '0\" -c bd1";
       man       = "colorful_man";
       o         = "open .";
+      p         = "python -q";
       qr        = "qrencode -t ansiutf8";
       s         = "source $HOME/.zshrc";
       sn        = "search_notes";
@@ -119,6 +123,10 @@ in
     enable = true;
     userName = "raphjaph";
     userEmail = "raphjaph@protonmail.com";
+    delta.enable = true;
+    delta.options = ''
+      
+    '';
   };
 
   nixpkgs.config.allowUnfree = true;
