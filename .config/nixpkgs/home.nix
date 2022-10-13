@@ -35,11 +35,13 @@ in
       rust-analyzer
       silver-searcher
       socat
+      sumneko-lua-language-server
       sshfs
       tldr
       tmux
       tree
       wget
+      zola
 # broken:     hugo
 # broken:     netcat
 # broken:     python310Packages.howdoi

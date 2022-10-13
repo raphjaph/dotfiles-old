@@ -95,8 +95,7 @@ set foldlevel=99
 set foldmethod=expr
 set history=10000           " lines of history to remember
 set mouse=a                 " enable mouse click
-set mouse=v                 " middle-click paste with
-set scrolloff=20            " number of lines of context around cursor
+set scrolloff=15            " number of lines of context around cursor
 set shortmess+=c            " don't give |ins-completion-menu| messages.
 set signcolumn=yes          " always show signcolumns (left of numbers)
 set t_Co=256
@@ -112,41 +111,52 @@ set formatoptions-=a        " disable automatic formatting of paragraphs
 set formatoptions-=c        " don't auto-wrap comments at textwidth
 set formatoptions-=l        " format long lines when inserting
 
-"nvim/lua/config.lua
-lua require('init')
 
 " Airlines Status Bar and Tabs
-let g:airline_theme = 'base16_default_dark'
+let airline_theme = 'base16_default_dark'
+let airline_detect_modified = 1 " highlight modified buffers
+
+" instantiate symbols dictionary first
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+let g:airline_symbols.linenr = ' '
+let g:airline_symbols.maxlinenr = ' '
+let g:airline_symbols.colnr = ':'
+let g:airline_symbols.branch = ''
+
+" buffer/tabline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline#extensions#tabline#show_splits = 0 " don't show tab name on right
+let g:airline#extensions#tabline#buffer_idx_mode = 1 " show buffer indices
+
 "let g:airline#extensions#ale#enabled = 1 " enable ale extension
-"let g:airline#extensions#tabline#buffer_idx_mode = 1 " show buffer indices
 "let g:airline#extensions#tabline#buffer_min_count = 2 " no tabline for less than 2 buffers
 "let g:airline#extensions#tabline#buffer_nr_show = 0 " don't show buffer numbers
 "let g:airline#extensions#tabline#buffers_label = '' " hide buffers label
-"let g:airline#extensions#tabline#enabled = 1 " enable the tabline
 "let g:airline#extensions#tabline#left_alt_sep = '' " hide left alt separator
 "let g:airline#extensions#tabline#left_sep = '' " hide left separator
 "let g:airline#extensions#tabline#right_alt_sep = '' " hide right alt separator
 "let g:airline#extensions#tabline#right_sep = '' " hide right separator
 "let g:airline#extensions#tabline#show_buffers = 1 " show buffers when no tabs are open
-"let g:airline#extensions#tabline#show_close_button = 0 " don't show close button
-"let g:airline#extensions#tabline#show_splits = 0 " don't show tab name on right
 "let g:airline#extensions#tabline#show_tab_nr = 0 " don't show tab number
 "let g:airline#extensions#tabline#show_tab_type = 0 " don't show tab type
 "let g:airline#extensions#whitespace#enabled = 0 " turn off whitespace checker
-"let g:airline_detect_modified = 1 " highlight modified buffers
 "let g:airline_left_sep = '' " turn off left separator
 "let g:airline_powerline_fonts = 1 " fixes missing whitespace in tabline
 "let g:airline_right_sep = '' " turn off right separator
 "let g:airline_skip_empty_sections = 1 " hide empty sections
-"nmap <space>1 <plug>AirlineSelectTab1
-"nmap <space>2 <plug>AirlineSelectTab2
-"nmap <space>3 <plug>AirlineSelectTab3
-"nmap <space>4 <plug>AirlineSelectTab4
-"nmap <space>5 <plug>AirlineSelectTab5
-"nmap <space>6 <plug>AirlineSelectTab6
-"nmap <space>7 <plug>AirlineSelectTab7
-"nmap <space>8 <plug>AirlineSelectTab8
-"nmap <space>9 <plug>AirlineSelectTab9
+
+nmap <space>1 <plug>AirlineSelectTab1
+nmap <space>2 <plug>AirlineSelectTab2
+nmap <space>3 <plug>AirlineSelectTab3
+nmap <space>4 <plug>AirlineSelectTab4
+nmap <space>5 <plug>AirlineSelectTab5
+nmap <space>6 <plug>AirlineSelectTab6
+nmap <space>7 <plug>AirlineSelectTab7
+nmap <space>8 <plug>AirlineSelectTab8
+nmap <space>9 <plug>AirlineSelectTab9
 
 " netrw stuff
 let g:netrw_banner = 0
@@ -154,6 +164,7 @@ let g:netrw_liststyle = 3
 let g:netrw_browse_split = 0
 let g:netrw_altv = 1
 let g:netrw_winsize = 20
+nnoremap <F3> :Lexplore<cr>
 
 "Rust Stuff
 "let g:rust_recommended_style           = 0 " use 2 space instead of 4 space tabs
@@ -178,3 +189,5 @@ let g:netrw_winsize = 20
 "let g:ale_linters = { 'rust': ['rls'], 'fish': [] }
 
 
+"nvim/lua/config.lua
+lua require('init')

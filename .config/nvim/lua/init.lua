@@ -36,7 +36,7 @@ require('nvim-treesitter.configs').setup({
 })
 
 
-local opts = { noremap=true, silent=true }
+local opts = { noremap = true, silent = true }
 
 
 -- =============================================================================
@@ -88,7 +88,7 @@ local on_attach = function(client, bufnr)
 
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  local bufopts = { noremap=true, silent=true, buffer=bufnr }
+  local bufopts = { noremap = true, silent = true, buffer = bufnr }
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
   vim.keymap.set('n', 'gy', vim.lsp.buf.type_definition, bufopts)
@@ -100,23 +100,24 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
   vim.keymap.set('n', '<space>wl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  end, bufopts) 
+  end, bufopts)
   vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', '<space>a', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', '<space>=', vim.lsp.buf.formatting, bufopts)
+  vim.keymap.set("n", "<space>tc", ":lua require('toggle-completion').toggle_completion()<CR>", bufopt)
 end
 
 local servers = {
   "rust_analyzer",
   "gopls",
----  "pyright",
----  "sumneko_lua",
----  "taplo"
+  ---  "pyright",
+  "sumneko_lua",
+  ---  "taplo"
 }
 for _, server in ipairs(servers) do
   -- connect to LSP through lspconfig plugin (set defaults)
-  require("lspconfig")[server].setup{
-    --capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+  require("lspconfig")[server].setup {
+    capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
     on_attach = on_attach,
   }
 end
@@ -126,57 +127,76 @@ end
 -- LSP Autocomplete (nvim-cmp)
 -- =============================================================================
 ---- It collects suggestions from source (lsp servers) and lists them
---vim.opt.completeopt={"menu", "menuone", "noselect"}
-local cmp = require'cmp'
---cmp.setup({
---    snippet = {
---        expand = function(args)
---            require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
---        end,
---    },
---    mapping = {
---        ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
---        ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
---        ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
---        ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
---        ['<C-e>'] = cmp.mapping({
---            i = cmp.mapping.abort(),
---            c = cmp.mapping.close(),
---        }),
---        ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
---
---        -- Tab completion seems to be frowned upon; no idea why
---        ["<Tab>"] = function(fallback)
---            if cmp.visible() then
---                cmp.select_next_item()
---            else
---                fallback()
---            end
---        end,
---        ["<S-Tab>"] = function(fallback)
---            if cmp.visible() then
---                cmp.select_prev_item()
---            else
---                fallback()
---            end
---        end,
---    },
---    -- sources are where suggestions are pulled from
---    sources = cmp.config.sources({
---    { name = 'nvim_lsp' },
---        -- snippets are pieces of reusable code; inserts suggestion?
---        --{ name = 'luasnip' },
---    }, {
---            -- buffer looks at text in current buffers and suggests based on that
---        { name = 'buffer' },
---        })
---})
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
+local cmp = require 'cmp'
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+    end,
+  },
+  mapping = cmp.mapping.preset.insert({
+    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.abort(),
+    ["<C-k>"] = cmp.mapping({
+      i = function()
+        if cmp.visible() then
+          cmp.abort()
+          require("toggle-completion").toggle_completion()
+        else
+          cmp.complete()
+          require("toggle-completion").toggle_completion()
+        end
+      end,
+    }),
+    ["<CR>"] = cmp.mapping({
+      i = function(fallback)
+        if cmp.visible() then
+          cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+          require("toggle-completion").toggle_completion()
+        else
+          fallback()
+        end
+      end,
+    }),
+
+    --        -- Tab completion seems to be frowned upon; no idea why
+    --        ["<Tab>"] = function(fallback)
+    --            if cmp.visible() then
+    --                cmp.select_next_item()
+    --            else
+    --                fallback()
+    --            end
+    --        end,
+    --        ["<S-Tab>"] = function(fallback)
+    --            if cmp.visible() then
+    --                cmp.select_prev_item()
+    --            else
+    --                fallback()
+    --            end
+    --        end,
+  }),
+  -- sources are where suggestions are pulled from
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+  }, {
+    { name = 'buffer' },
+  })
+})
 -- Set configuration for specific filetype.
 cmp.setup.filetype('gitcommit', {
-    sources = cmp.config.sources({
+  sources = cmp.config.sources({
     { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
-    }, {
-        { name = 'buffer' },
-        })
+  }, {
+    { name = 'buffer' },
+  })
 })
 
+cmp.setup.cmdline({ '/', '?' }, {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = {
+    { name = 'buffer' }
+  }
+})
