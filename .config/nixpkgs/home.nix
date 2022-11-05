@@ -67,8 +67,8 @@ in
       setopt inc_append_history
       
       # set some env vars
-      export EDITOR=hx
-      export VISUAL=hx
+      export EDITOR=nvim
+      export VISUAL=nvim
       
       # get nix working after macos update
       if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then

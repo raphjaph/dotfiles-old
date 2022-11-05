@@ -8,14 +8,14 @@ require("telescope").setup {
       horizontal = {
         width_padding = 0.04,
         height_padding = 0.1,
-        preview_width = 0.6,
+        preview_width = 0.7,
       },
     },
   }
 }
-
 require("telescope").load_extension "fzf"
 require("telescope").load_extension "file_browser"
+
 -- =============================================================================
 -- Treesitter (highlighting, folding, indentation, selection)
 -- =============================================================================
@@ -80,7 +80,6 @@ vim.keymap.set('n', 'gn', "<cmd>bnext<cr>", opts)
 vim.keymap.set('n', 'gp', "<cmd>bprev<cr>", opts)
 vim.keymap.set('n', '<esc>', "<cmd>noh<return><esc>", opts)
 vim.keymap.set('n', '<esc>^[', "<esc>^[", opts)
-
 
 
 -- =============================================================================

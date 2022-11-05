@@ -26,12 +26,6 @@ Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 
-" language support and code completion
-"Plug 'fatih/vim-go'
-"Plug 'LnL7/vim-nix'
-"Plug 'simrat39/rust-tools.nvim'
-"Plug 'dense-analysis/ale'
-
 " pretty and lightweight status and tab lines
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -168,28 +162,6 @@ let g:netrw_browse_split = 0
 let g:netrw_altv = 1
 let g:netrw_winsize = 20
 nnoremap <F3> :Lexplore<cr>
-
-"Rust Stuff
-"let g:rust_recommended_style           = 0 " use 2 space instead of 4 space tabs
-"let g:rustfmt_autosave                 = 0 " run rustfmt on save
-"let g:ale_completion_enabled           = 0 " enable completion
-"let g:ale_fix_on_save                  = 1 " fix on save
-"let g:ale_lint_on_enter                = 0 " lint when entering a new file
-"let g:ale_lint_on_filetype_changed     = 0 " don't lint on filetype changed
-"let g:ale_lint_on_insert_leave         = 0 " don't lint when leaving insert mode
-"let g:ale_lint_on_save                 = 0 " lint on save
-"let g:ale_lint_on_text_changed         = 0 " don't lint when text is changed
-"let g:ale_rust_cargo_check_all_targets = 1 " run cargo check with all targets
-"let g:ale_set_highlights               = 0 " don't set highlights for lints
-"let g:ale_set_loclist                  = 1 " set loclist for lints
-"let g:ale_set_signs                    = 1 " set signs for lints
-"let g:ale_fixers = {
-"\ '*': ['remove_trailing_lines', 'trim_whitespace'],
-"\ 'markdown': ['remove_trailing_lines'],
-"\ 'mail': ['remove_trailing_lines'],
-"\ 'rust': ['rustfmt'],
-"\}
-"let g:ale_linters = { 'rust': ['rls'], 'fish': [] }
 
 "nvim/lua/init.lua
 lua require('init')
