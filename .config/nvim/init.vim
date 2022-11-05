@@ -52,6 +52,9 @@ Plug 'andrewferrier/wrapping.nvim'
 " Quick commenting
 Plug 'terrortylor/nvim-comment'
 
+" just 
+Plug 'NoahTheDuke/vim-just'
+
 call plug#end()
 
 "==============================================================================
@@ -188,6 +191,5 @@ nnoremap <F3> :Lexplore<cr>
 "\}
 "let g:ale_linters = { 'rust': ['rls'], 'fish': [] }
 
-
-"nvim/lua/config.lua
+"nvim/lua/init.lua
 lua require('init')

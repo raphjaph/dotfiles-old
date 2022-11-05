@@ -1,9 +1,21 @@
 -- =============================================================================
 -- Telescope (fzf, viewer and other powerful stuff)
 -- =============================================================================
-require("telescope").setup({})
-require("telescope").load_extension("fzf")
+require("telescope").setup {
+  defaults = {
+    layout_config = {
+      prompt_position = "bottom",
+      horizontal = {
+        width_padding = 0.04,
+        height_padding = 0.1,
+        preview_width = 0.6,
+      },
+    },
+  }
+}
 
+require("telescope").load_extension "fzf"
+require("telescope").load_extension "file_browser"
 -- =============================================================================
 -- Treesitter (highlighting, folding, indentation, selection)
 -- =============================================================================
@@ -16,6 +28,7 @@ require('nvim-treesitter.configs').setup({
     "toml",
     "nix",
     "go",
+    "html",
   },
   highlight = {
     enable = true,
@@ -38,7 +51,6 @@ require('nvim-treesitter.configs').setup({
 
 local opts = { noremap = true, silent = true }
 
-
 -- =============================================================================
 -- Diagnostics
 -- =============================================================================
@@ -59,10 +71,11 @@ vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 -- =============================================================================
 
 -- | is the :bar or <BAR> command to execute two commands
-vim.keymap.set('n', '<space>s', "<cmd>source ~/.config/nvim/init.vim<cr> | <cmd>PlugInstall<cr>", opts)
-vim.keymap.set('n', '<space>i', "<cmd>edit ~/.config/nvim/init.vim<cr> | <cmd>vs ~/.config/nvim/lua/init.lua<cr>", opts)
+vim.keymap.set('n', '<space>sv', "<cmd>source ~/.config/nvim/init.vim<cr> | <cmd>PlugInstall<cr>", opts)
+vim.keymap.set('n', '<space>rc', "<cmd>edit ~/.config/nvim/init.vim<cr> | <cmd>vs ~/.config/nvim/lua/init.lua<cr>", opts)
 vim.keymap.set('n', '<space>f', "<cmd>Telescope find_files<cr>", opts)
 vim.keymap.set('n', '<space>g', "<cmd>Telescope live_grep<cr>", opts)
+vim.keymap.set('n', '<space>fb', "<cmd>Telescope file_browser<cr>", opts)
 vim.keymap.set('n', 'gn', "<cmd>bnext<cr>", opts)
 vim.keymap.set('n', 'gp', "<cmd>bprev<cr>", opts)
 vim.keymap.set('n', '<esc>', "<cmd>noh<return><esc>", opts)
@@ -113,6 +126,7 @@ local servers = {
   ---  "pyright",
   "sumneko_lua",
   ---  "taplo"
+  -- "html-languageserver",
 }
 for _, server in ipairs(servers) do
   -- connect to LSP through lspconfig plugin (set defaults)
@@ -200,3 +214,5 @@ cmp.setup.cmdline({ '/', '?' }, {
     { name = 'buffer' }
   }
 })
+
+return false

@@ -39,6 +39,7 @@ in
       sshfs
       tldr
       tmux
+      tor
       tree
       wget
       zola
@@ -68,10 +69,16 @@ in
       # set some env vars
       export EDITOR=hx
       export VISUAL=hx
+      
+      # get nix working after macos update
+      if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+        . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+      fi
     '';
     shellAliases = {
       b         = "bat --style=plain";
       bp        = "bat --style=plain --paging=always";
+      bbcli     = "bitcoin-cli -rpccookiefile=/Users/raphael/bitcoin-rpc-cookie -rpcconnect=10.13.13.2";
       c         = "clear";
       dot       = "dotfiles";
       dotfiles  = "/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME";
