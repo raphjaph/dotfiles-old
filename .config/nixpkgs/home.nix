@@ -103,6 +103,7 @@ in
       sn        = "search_notes";
       update    = "home-manager switch && source $HOME/.zshrc";
       vim       = "nvim";
+      vimrc     = "cd ~/.config/nvim && nvim init.vim";
     };
     defaultKeymap = "viins";
   };
