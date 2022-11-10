@@ -1,5 +1,5 @@
 shell:
-  program: /usr/local/bin/zsh
+  program: /bin/zsh
   args:
     - -l
       #    - -c
@@ -13,7 +13,7 @@ selection:
   save_to_clipboard: true
       
 window:
-  decorations: None
+  decorations: Buttonless
   padding:
     x: 2 
     y: 2
