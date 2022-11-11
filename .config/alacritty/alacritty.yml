@@ -13,7 +13,7 @@ selection:
   save_to_clipboard: true
       
 window:
-  decorations: Buttonless
+  decorations: None
   padding:
     x: 2 
     y: 2
@@ -26,18 +26,18 @@ font:
   normal:
     family: Source Code Pro
     style: Regular
-  size: 14.0
+  size: 18.0
 draw_bold_text_with_bright_colors: true
 
 # Colors
 import:
   - ~/.config/alacritty/default_colors.yml
 
-cursor:
-  style:
-   shape: Block
-  vi_mode_style: Beam
-  unfocused_hollow: true
+    #cursor:
+    #  style:
+    #   shape: Block
+    #  vi_mode_style: Beam
+    #  unfocused_hollow: true
 
 live_config_reload: true
 

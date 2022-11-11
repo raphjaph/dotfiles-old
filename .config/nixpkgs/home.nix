@@ -20,8 +20,8 @@ in
       gnupg
       go
       gopls
-      helix
       htop
+      just
       jq
       neovim
       pdfgrep
@@ -43,6 +43,7 @@ in
       tree
       wget
       zola
+      zsh-vi-mode
 # broken:     hugo
 # broken:     netcat
 # broken:     python310Packages.howdoi
@@ -74,6 +75,9 @@ in
       if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
         . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
       fi
+
+      # better vi mode in zsh
+      source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
     '';
     shellAliases = {
       b         = "bat --style=plain";
@@ -82,18 +86,17 @@ in
       c         = "clear";
       dot       = "dotfiles";
       dotfiles  = "/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME";
-      dotls     = "dotfiles ls-tree -r --full-tree";
+      dotls     = "dotfiles ls-tree -r --full-tree main";
       ffd       = "cd $(fzf_directory)";
       ffe       = "fzf_edit";
       gs        = "git status";
       gc        = "git commit --verbose";
       gap       = "git add -p";
       gcb       = "git checkout -b";
-      h         = "hx";
       hm        = "home-manager";
-      la        = "ls -laGh";
-      ll        = "ls -lGh";
-      ls        = "ls -G";
+      ls        = "ls -G --color";
+      la        = "ls -laGh --color";
+      ll        = "ls -lGh --color";
       lv        = "nvim -c \"normal '0\" -c bd1";
       man       = "colorful_man";
       o         = "open .";
