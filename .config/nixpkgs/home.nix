@@ -43,7 +43,8 @@ in
       tree
       wget
       zola
-      zsh-vi-mode
+      zsh-completions
+#      zsh-vi-mode
 # broken:     hugo
 # broken:     netcat
 # broken:     python310Packages.howdoi
@@ -77,11 +78,12 @@ in
       fi
 
       # better vi mode in zsh
-      source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+      #source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
     '';
     shellAliases = {
       b         = "bat --style=plain";
       bp        = "bat --style=plain --paging=always";
+      bcli      = "bitcoin-cli";
       bbcli     = "bitcoin-cli -rpccookiefile=/Users/raphael/bitcoin-rpc-cookie -rpcconnect=10.13.13.2";
       c         = "clear";
       dot       = "dotfiles";
