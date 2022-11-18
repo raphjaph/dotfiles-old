@@ -60,8 +60,9 @@ in
   programs.zsh = {
     enable = true;
     enableCompletion = true;
-    enableAutosuggestions = true;
+    /* enableAutosuggestions = true; */
     enableSyntaxHighlighting = true;
+    historySubstringSearch.enable = true;
     initExtra = ''
       PROMPT=$'\n%F{green}%m%f %B%F{cyan}%~%f%b\n> '
 
@@ -79,6 +80,7 @@ in
 
       # better vi mode in zsh
       #source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+
     '';
     shellAliases = {
       b         = "bat --style=plain";
@@ -106,6 +108,8 @@ in
       qr        = "qrencode -t ansiutf8";
       s         = "source $HOME/.zshrc";
       sn        = "search_notes";
+      tma       = "tmux attach-session";
+      tmn       = "tmux new -s";
       update    = "home-manager switch && source $HOME/.zshrc";
       vim       = "nvim";
       vimrc     = "cd ~/.config/nvim && nvim init.vim";

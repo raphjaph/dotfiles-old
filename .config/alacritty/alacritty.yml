@@ -1,12 +1,9 @@
+live_config_reload: true
+
 shell:
   program: /bin/zsh
   args:
     - -l
-      #    - -c
-      #    - "tmux"
-
-env:
-  TERM: xterm-256color
 
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
@@ -27,9 +24,9 @@ font:
     family: Source Code Pro
     style: Regular
   size: 18.0
+
 draw_bold_text_with_bright_colors: true
 
-# Colors
 import:
   - ~/.config/alacritty/default_colors.yml
 
@@ -38,6 +35,4 @@ import:
     #   shape: Block
     #  vi_mode_style: Beam
     #  unfocused_hollow: true
-
-live_config_reload: true
 

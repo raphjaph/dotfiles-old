@@ -14,7 +14,6 @@ require("telescope").setup {
   }
 }
 require("telescope").load_extension "fzf"
-require("telescope").load_extension "file_browser"
 
 -- =============================================================================
 -- Treesitter (highlighting, folding, indentation, selection)
@@ -60,10 +59,10 @@ vim.diagnostic.config {
   signs = true,
   underline = true,
 }
-vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+vim.keymap.set('n', '<space>ee', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+vim.keymap.set('n', '<space>qq', vim.diagnostic.setloclist, opts)
 
 
 -- =============================================================================
@@ -73,9 +72,8 @@ vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 -- | is the :bar or <BAR> command to execute two commands
 vim.keymap.set('n', '<space>sv', "<cmd>source ~/.config/nvim/init.vim<cr> | <cmd>PlugInstall<cr>", opts)
 vim.keymap.set('n', '<space>rc', "<cmd>edit ~/.config/nvim/init.vim<cr> | <cmd>vs ~/.config/nvim/lua/init.lua<cr>", opts)
-vim.keymap.set('n', '<space>f', "<cmd>Telescope find_files<cr>", opts)
-vim.keymap.set('n', '<space>g', "<cmd>Telescope live_grep<cr>", opts)
-vim.keymap.set('n', '<space>fb', "<cmd>Telescope file_browser<cr>", opts)
+vim.keymap.set('n', '<space>ff', "<cmd>Telescope find_files<cr>", opts)
+vim.keymap.set('n', '<space>gr', "<cmd>Telescope live_grep<cr>", opts)
 vim.keymap.set('n', 'gn', "<cmd>bnext<cr>", opts)
 vim.keymap.set('n', 'gp', "<cmd>bprev<cr>", opts)
 vim.keymap.set('n', '<esc>', "<cmd>noh<return><esc>", opts)
@@ -114,7 +112,7 @@ local on_attach = function(client, bufnr)
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, bufopts)
   vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-  vim.keymap.set('n', '<space>a', vim.lsp.buf.code_action, bufopts)
+  vim.keymap.set('n', '<space>aa', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', '<space>=', vim.lsp.buf.formatting, bufopts)
   -- vim.keymap.set("n", "<space>tc", ":lua require('toggle-completion').toggle_completion()<CR>", bufopt)
 end
