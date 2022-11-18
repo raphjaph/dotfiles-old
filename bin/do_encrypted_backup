@@ -22,6 +22,8 @@ Directories=(
 '.sparrow'
 '.ssh'
 '.yggdrasil.conf'
+'/Users/raphael/Library/Application\ Support/Syncthing'
+'/Users/raphael/Library/Application\ Support/Bitcoin/{bitcoin.conf, wallets}'
 )
 
 for dir in "${Directories[@]}"; do
