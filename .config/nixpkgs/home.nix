@@ -102,9 +102,9 @@ in
       gch       = "git checkout";
       gs        = "git status";
       hm        = "home-manager";
-      la        = "ls -laGh --color";
-      ll        = "ls -lGh --color";
-      ls        = "ls -G --color";
+      la        = "ls -laGh";# --color";
+      ll        = "ls -lGh";# --color";
+      ls        = "ls -G";# --color";
       lv        = "nvim -c \"normal '0\" -c bd1";
       man       = "colorful_man";
       o         = "open .";
