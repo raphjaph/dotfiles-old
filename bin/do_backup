@@ -3,27 +3,32 @@
 # set -eou pipefail
 set -ou pipefail
 
-# for complete synchronization add --delete option
-
 WORKDIR=/Users/raphael/
-DEST=/Volumes/Backup/macbook/
-COMMAND="rsync -azP" 
+DEST=/Volumes/Backup/tbd/
+
+cd $WORKDIR 
+
+brew bundle dump
+get_bookmarks > bookmarks.txt
+get_browser_history > browser_history.txt
+
 Directories=(
 '.config'
 '.zshrc'
 'Brewfile'
+'bookmarks.txt'
+'browser_history.txt'
+'bitcoin-rpc-cookie'
 'Desktop'
 'Documents'
-'allApps.txt'
 'backups'
 'bin'
-'bookmarks.txt'
-'books'
-'browserHist.txt'
-'log'
 'notes'
-'projects'
+'src'
 )
+
+# for complete synchronization add --delete option
+COMMAND="rsync -azP" 
 
 for dir in "${Directories[@]}"; do
   $COMMAND $@ $WORKDIR$dir $DEST

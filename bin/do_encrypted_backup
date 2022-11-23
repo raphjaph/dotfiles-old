@@ -21,7 +21,6 @@ Directories=(
 '.gnupg'
 '.sparrow'
 '.ssh'
-'.yggdrasil.conf'
 '/Users/raphael/Library/Application\ Support/Syncthing'
 '/Users/raphael/Library/Application\ Support/Bitcoin/{bitcoin.conf, wallets}'
 )

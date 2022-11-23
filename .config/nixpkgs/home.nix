@@ -12,6 +12,7 @@ in
       bat
       btop
       bitcoind
+      cmake
       fd
       ffmpeg
       fzf
@@ -26,6 +27,7 @@ in
       neovim
       pdfgrep
       pfetch
+      protobuf
       pstree
       python3
       qrencode
@@ -84,32 +86,36 @@ in
     '';
     shellAliases = {
       b         = "bat --style=plain";
-      bp        = "bat --style=plain --paging=always";
-      bcli      = "bitcoin-cli";
       bbcli     = "bitcoin-cli -rpccookiefile=/Users/raphael/bitcoin-rpc-cookie -rpcconnect=10.13.13.2";
+      bcli      = "bitcoin-cli";
+      bp        = "bat --style=plain --paging=always";
       c         = "clear";
       dot       = "dotfiles";
       dotfiles  = "/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME";
       dotls     = "dotfiles ls-tree -r --full-tree main";
       ffd       = "cd $(fzf_directory)";
       ffe       = "fzf_edit";
-      gs        = "git status";
-      gc        = "git commit --verbose";
+      ga        = "git add -u";
       gap       = "git add -p";
+      gc        = "git commit --verbose";
       gcb       = "git checkout -b";
+      gch       = "git checkout";
+      gs        = "git status";
       hm        = "home-manager";
-      ls        = "ls -G --color";
       la        = "ls -laGh --color";
       ll        = "ls -lGh --color";
+      ls        = "ls -G --color";
       lv        = "nvim -c \"normal '0\" -c bd1";
       man       = "colorful_man";
       o         = "open .";
       p         = "python -q";
       qr        = "qrencode -t ansiutf8";
       s         = "source $HOME/.zshrc";
+      sbcli     = "bitcoin-cli -chain=signet";
       sn        = "search_notes";
       tma       = "tmux attach-session";
       tmn       = "tmux new -s";
+      unixt     = "date '+%s'";
       update    = "home-manager switch && source $HOME/.zshrc";
       vim       = "nvim";
       vimrc     = "cd ~/.config/nvim && nvim init.vim";

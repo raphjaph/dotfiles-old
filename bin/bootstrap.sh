@@ -6,3 +6,5 @@ dotfiles config --local status.showUntrackedFiles no
 dotfiles checkout
 dotfiles submodule init
 dotfiles submodule update
+
+brew bundle
