@@ -28,6 +28,8 @@ require('nvim-treesitter.configs').setup({
     "nix",
     "go",
     "html",
+    "css",
+    "bash",
   },
   highlight = {
     enable = true,
@@ -113,15 +115,15 @@ local on_attach = function(client, bufnr)
   end, bufopts)
   vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', '<space>aa', vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set('n', '<space>=', vim.lsp.buf.formatting, bufopts)
+  vim.keymap.set('n', '<space>=', vim.lsp.buf.format, bufopts)
   -- vim.keymap.set("n", "<space>tc", ":lua require('toggle-completion').toggle_completion()<CR>", bufopt)
 end
 
 local servers = {
   "rust_analyzer",
   "gopls",
-  ---  "pyright",
   "sumneko_lua",
+  ---  "pyright",
   ---  "taplo"
   -- "html-languageserver",
 }

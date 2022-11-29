@@ -48,7 +48,7 @@ Plug 'terrortylor/nvim-comment'
 " just 
 Plug 'NoahTheDuke/vim-just'
 
-Plug 'L3MON4D3/LuaSnip', {'tag': 'v1.1.0.*'}
+Plug 'L3MON4D3/LuaSnip', {'tag': 'v1.1.0'}
 
 call plug#end()
 
@@ -93,7 +93,7 @@ set foldlevel=99
 set foldmethod=expr
 set history=10000           " lines of history to remember
 set mouse=a                 " enable mouse click
-set scrolloff=15            " number of lines of context around cursor
+set scrolloff=10            " number of lines of context around cursor
 set shortmess+=c            " don't give |ins-completion-menu| messages.
 set signcolumn=yes          " always show signcolumns (left of numbers)
 set t_Co=256
