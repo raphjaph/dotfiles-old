@@ -50,6 +50,9 @@ Plug 'NoahTheDuke/vim-just'
 
 Plug 'L3MON4D3/LuaSnip', {'tag': 'v1.1.0'}
 
+" pipe errors to nvim 
+Plug 'alopatindev/cargo-limit', { 'do': 'cargo install cargo-limit nvim-send' }
+
 call plug#end()
 
 "==============================================================================
@@ -84,6 +87,7 @@ set smartindent
 set smarttab
 set splitright              " split new window to right
 set ttyfast                 " make updates smoother but use more characters
+set wildmode=longest,list,full
 
 
 set cc=80                   " set an 80 column border for good coding style

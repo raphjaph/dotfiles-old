@@ -62,7 +62,7 @@ in
   programs.zsh = {
     enable = true;
     enableCompletion = true;
-    /* enableAutosuggestions = true; */
+    enableAutosuggestions = true;
     enableSyntaxHighlighting = true;
     historySubstringSearch.enable = true;
     initExtra = ''
