@@ -17,6 +17,7 @@ in
       ffmpeg
       fzf
       skim
+      gh
       git
       gnupg
       go
@@ -53,6 +54,8 @@ in
     ];
     sessionPath = [
       "$HOME/bin"
+      "$HOME/go/bin"
+      "$HOME/.cargo/bin"
       "/usr/local/bin"
       "/usr/local/sbin"
     ];
@@ -83,6 +86,8 @@ in
       # better vi mode in zsh
       #source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
+      # fix backspace after normal mode 
+      bindkey "^?" backward-delete-char
     '';
     shellAliases = {
       b         = "bat --style=plain";
