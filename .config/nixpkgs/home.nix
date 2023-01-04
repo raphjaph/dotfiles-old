@@ -107,6 +107,7 @@ in
       gch       = "git checkout";
       gs        = "git status";
       hm        = "home-manager";
+      j         = "just";
       la        = "ls -laGh";# --color";
       ll        = "ls -lGh";# --color";
       ls        = "ls -G";# --color";

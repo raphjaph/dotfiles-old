@@ -52,6 +52,7 @@ Plug 'L3MON4D3/LuaSnip', {'tag': 'v1.1.0'}
 
 " pipe errors to nvim 
 Plug 'alopatindev/cargo-limit', { 'do': 'cargo install cargo-limit nvim-send' }
+Plug 'romainl/vim-qf'                     " quickfix improvements
 
 call plug#end()
 
@@ -170,3 +171,60 @@ nnoremap <F3> :Lexplore<cr>
 
 "nvim/lua/init.lua
 lua require('init')
+
+
+
+" Functions
+function! g:CargoLimitOpen(result)
+  let l:winnr = winnr()
+
+  let l:quickfix_is_open = QuickfixIsOpen()
+
+  cgetexpr []
+  for file in a:result['files']
+    caddexpr file['path'].':'.file['line'].':'.file['column'].':'.file['message']
+  endfor
+
+  if !l:quickfix_is_open
+    cclose
+  endif
+
+  if l:winnr !=# winnr()
+    wincmd p
+  endif
+endfunction
+
+function! QuickfixIsOpen()
+  for n in range(1, winnr('$'))
+    if getwinvar(n, '&syntax') == 'qf'
+      return 1
+    endif
+  endfor
+
+  return 0
+endfunction
+
+function! QuickfixNext(previous)
+  if len(getqflist()) == 0
+    echo "Quickfix list empty."
+    return
+  endif
+
+  if QuickfixIsOpen()
+    if a:previous
+      execute "normal \<plug>(qf_qf_previous)"
+    else
+      execute "normal \<plug>(qf_qf_next)"
+    endif
+  else
+    execute "normal \<plug>(qf_qf_toggle_stay)"
+    execute 'cc 1'
+  endif
+endfunction
+
+nnoremap + :call QuickfixNext(0)<cr>|                  " go to next error
+map  -  <plug>(qf_qf_toggle_stay)|                     " toggle quickfix window
+nnoremap _ :call QuickfixNext(1)<cr>|                  " go to previous error
+nnoremap <leader>qc :call setqflist([])<cr>|           " clear quickfix list
+
+set errorformat   =%f:%l:%c:%m           " set errorformat
