@@ -76,8 +76,8 @@ vim.keymap.set('n', '<space>sv', "<cmd>source ~/.config/nvim/init.vim<cr> | <cmd
 vim.keymap.set('n', '<space>rc', "<cmd>edit ~/.config/nvim/init.vim<cr> | <cmd>vs ~/.config/nvim/lua/init.lua<cr>", opts)
 vim.keymap.set('n', '<space>ff', "<cmd>Telescope find_files<cr>", opts)
 vim.keymap.set('n', '<space>gr', "<cmd>Telescope live_grep<cr>", opts)
-vim.keymap.set('n', 'gn', "<cmd>bnext<cr>", opts)
-vim.keymap.set('n', 'gp', "<cmd>bprev<cr>", opts)
+vim.keymap.set('n', '<space>n', "<cmd>bnext<cr>", opts)
+vim.keymap.set('n', '<space>p', "<cmd>bprev<cr>", opts)
 vim.keymap.set('n', '<esc>', "<cmd>noh<return><esc>", opts)
 vim.keymap.set('n', '<esc>^[', "<esc>^[", opts)
 
@@ -123,7 +123,7 @@ local servers = {
   "rust_analyzer",
   "gopls",
   "sumneko_lua",
-  ---  "pyright",
+  "pyright",
   ---  "taplo"
   -- "html-languageserver",
 }

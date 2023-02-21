@@ -54,6 +54,10 @@ Plug 'L3MON4D3/LuaSnip', {'tag': 'v1.1.0'}
 Plug 'alopatindev/cargo-limit', { 'do': 'cargo install cargo-limit nvim-send' }
 Plug 'romainl/vim-qf'                     " quickfix improvements
 
+" Formatting
+" Plug 'sbdchd/neoformat'
+" Plug 'dense-analysis/ale'
+
 call plug#end()
 
 "==============================================================================

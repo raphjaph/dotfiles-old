@@ -30,7 +30,7 @@ in
       pfetch
       protobuf
       pstree
-      python3
+      /* python3 */
       qrencode
       reattach-to-user-namespace
       ripgrep
@@ -77,6 +77,9 @@ in
       # set some env vars
       export EDITOR=nvim
       export VISUAL=nvim
+      export HOMEBREW_NO_ANALYTICS=1 
+      export HOMEBREW_NO_INSECURE_REDIRECT=1
+      export HOMEBREW_CASK_OPTS=--require-sha
       
       # get nix working after macos update
       if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
@@ -90,6 +93,7 @@ in
       bindkey "^?" backward-delete-char
     '';
     shellAliases = {
+      ".."      = "cd ..";
       b         = "bat --style=plain";
       bbcli     = "bitcoin-cli -rpccookiefile=/Users/raphael/bitcoin-rpc-cookie -rpcconnect=10.13.13.2";
       bcli      = "bitcoin-cli";
@@ -102,12 +106,16 @@ in
       ffe       = "fzf_edit";
       ga        = "git add -u";
       gap       = "git add -p";
+      gb        = "git branch --sort=-committerdate";
       gc        = "git commit --verbose";
       gcb       = "git checkout -b";
       gch       = "git checkout";
+      gpum      = "git pull upstream master";
       gs        = "git status";
       hm        = "home-manager";
       j         = "just";
+      jc        = "just --choose";
+      jl        = "just --list";
       la        = "ls -laGh";# --color";
       ll        = "ls -lGh";# --color";
       ls        = "ls -G";# --color";
@@ -124,21 +132,13 @@ in
       unixt     = "date '+%s'";
       update    = "home-manager switch && source $HOME/.zshrc";
       vim       = "nvim";
+      v         = "nvim";
       vimrc     = "cd ~/.config/nvim && nvim init.vim";
     };
     defaultKeymap = "viins";
   };
 
-#  programs.fzf = {
-#    enable = true;
-#    enableZshIntegration = true;
-#    defaultCommand = "fd --type f --color=never --hidden";
-#    defaultOptions = [ "--height 75% --multi --reverse --bind ctrl-f:page-down,ctrl-b:page-up" ];
-#    fileWidgetCommand = "fd --type f --color=never --hidden";
-#    fileWidgetOptions = [ "--preview 'bat --color=always --line-range :500 {}'" ];
-#  };
-
-  programs.skim = {
+  programs.fzf = {
     enable = true;
     enableZshIntegration = true;
     defaultCommand = "fd --type f --color=never --hidden";
@@ -146,6 +146,15 @@ in
     fileWidgetCommand = "fd --type f --color=never --hidden";
     fileWidgetOptions = [ "--preview 'bat --color=always --line-range :500 {}'" ];
   };
+
+#  programs.skim = {
+#    enable = true;
+#    enableZshIntegration = true;
+#    defaultCommand = "fd --type f --color=never --hidden";
+#    defaultOptions = [ "--height 75% --multi --reverse --bind ctrl-f:page-down,ctrl-b:page-up" ];
+#    fileWidgetCommand = "fd --type f --color=never --hidden";
+#    fileWidgetOptions = [ "--preview 'bat --color=always --line-range :500 {}'" ];
+#  };
 
   programs.git = {
     enable = true;

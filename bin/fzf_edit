@@ -6,5 +6,5 @@ file=$(
 )
 
 if [[ -n $file ]]; then
-    $EDITOR "$file"
+    exec $EDITOR "$file"
 fi
