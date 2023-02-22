@@ -6,6 +6,7 @@
 # 4. for complete synchronization add --delete option
 # 5. Dismount in veracrypt app
 
+# TODO: figure out how to do with command-line
 # veracrypt --mount /Volumes/Backup/VeraCryptContainer ~/Desktop/ --pim 0 --keyfiles "" --protect-hidden no --slot 1 --verbose
 
 set -eoxu pipefail
