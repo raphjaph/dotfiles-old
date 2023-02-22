@@ -10,41 +10,47 @@ in
     packages = with pkgs; [
       asciiquarium
       bat
-      btop
       bitcoind
+      btop
       cmake
       fd
       ffmpeg
       fzf
-      skim
       gh
       git
       gnupg
       go
       gopls
       htop
-      just
+      isort
       jq
+      just
+      mdbook
+      mdbook-linkcheck
       neovim
+      nodePackages_latest.prettier
       pdfgrep
       pfetch
+      pipenv
       protobuf
       pstree
-      /* python3 */
+      python39Packages.grip
       qrencode
       reattach-to-user-namespace
       ripgrep
-      rustup
       rust-analyzer
+      rustup
       silver-searcher
+      skim
       socat
-      sumneko-lua-language-server
       sshfs
+      sumneko-lua-language-server
       tldr
       tmux
       tor
       tree
       wget
+      yapf
       zola
       zsh-completions
 #      zsh-vi-mode
@@ -134,6 +140,7 @@ in
       vim       = "nvim";
       v         = "nvim";
       vimrc     = "cd ~/.config/nvim && nvim init.vim";
+      veracrypt = "/Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt --text";
     };
     defaultKeymap = "viins";
   };

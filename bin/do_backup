@@ -1,10 +1,10 @@
 #!/usr/bin/env bash 
 
-# set -eou pipefail
-set -ou pipefail
+set -eoxu pipefail
+# set -ou pipefail
 
-WORKDIR=/Users/raphael/
-DEST=/Volumes/Backup/tbd/
+WORKDIR=/Users/raphael
+DEST=/Volumes/Backup/gamma
 
 cd $WORKDIR 
 
@@ -12,25 +12,23 @@ brew bundle dump
 get_bookmarks > bookmarks.txt
 get_browser_history > browser_history.txt
 
-Directories=(
-'.config'
-'.zshrc'
-'Brewfile'
-'bookmarks.txt'
-'browser_history.txt'
-'bitcoin-rpc-cookie'
-'Desktop'
-'Documents'
-'backups'
-'bin'
-'notes'
-'src'
-)
-
 # for complete synchronization add --delete option
-COMMAND="rsync -azP" 
+rsync -avzP $@ \
+  $WORKDIR/.config \
+  $WORKDIR/.dotfiles \
+  $WORKDIR/Brewfile \
+  $WORKDIR/Desktop \
+  $WORKDIR/Documents \
+  $WORKDIR/Downloads \
+  $WORKDIR/RectangleConfig.json \
+  $WORKDIR/backups \
+  $WORKDIR/bin \
+  $WORKDIR/bookmarks.txt \
+  $WORKDIR/browser_history.txt \
+  $WORKDIR/notes \
+  $WORKDIR/projects \
+  $DEST
 
-for dir in "${Directories[@]}"; do
-  $COMMAND $@ $WORKDIR$dir $DEST
-done
-
+rm Brewfile
+rm bookmarks.txt 
+rm browser_history.txt 
