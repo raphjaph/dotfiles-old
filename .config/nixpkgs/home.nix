@@ -105,9 +105,7 @@ in
       bcli      = "bitcoin-cli";
       bp        = "bat --style=plain --paging=always";
       c         = "clear";
-      dot       = "dotfiles";
-      dotfiles  = "/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME";
-      dotls     = "dotfiles ls-tree -r --full-tree main";
+      dot       = "git --git-dir=$HOME/.dotfiles --work-tree=$HOME";
       ffd       = "cd $(fzf_directory)";
       ffe       = "fzf_edit";
       ga        = "git add -u";

@@ -1,11 +1,11 @@
 
 echo ".dotfiles" >> .gitignore
 git clone --bare https://github.com/raphjaph/dotfiles.git $HOME/.dotfiles
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
-dotfiles config --local status.showUntrackedFiles no
-dotfiles checkout
-dotfiles submodule init
-dotfiles submodule update
+alias dot='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
+dot config --local status.showUntrackedFiles no
+dot checkout
+dot submodule init
+dot submodule update
 
 nix-channel --add https://github.com/nix-community/home-manager/archive/release-22.11.tar.gz home-manager
 nix-channel --update
