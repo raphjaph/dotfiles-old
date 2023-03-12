@@ -75,39 +75,37 @@ filetype indent on
 set autoindent              " indent a new line the same amount as the line just typed
 set autoread
 set breakindent             " show soft-wrapped text with leading indent
+set cc=80                   " set an 80 column border for good coding style
+set clipboard=unnamedplus   " using system clipboard
 set cursorline              " highlight current cursorline
 set expandtab               " converts tabs to white space
+set foldexpr=nvim_treesitter#foldexpr()
+set foldlevel=99
+set foldmethod=expr
 set hidden                  " if hidden is not set, TextEdit might fail.
+set history=10000           " lines of history to remember
 set ignorecase              " case insensitive
 set incsearch               " incremental search
 set linebreak               " break on characters in 'breakat'
 set ma
+set mouse=a                 " enable mouse click
 set nofoldenable
 set number                  " add line numbers
 set ruler                   " show position in file
+set scrolloff=15            " number of lines of context around cursor
 set shiftround              " round < and > to multiples of shiftwidth
+set shortmess+=c            " don't give |ins-completion-menu| messages.
 set showmatch               " show matching
+set signcolumn=yes          " always show signcolumns (left of numbers)
 set smartcase
 set smartindent
 set smarttab
 set splitright              " split new window to right
-set ttyfast                 " make updates smoother but use more characters
-set wildmode=longest,list,full
-
-
-set cc=80                   " set an 80 column border for good coding style
-set clipboard=unnamedplus   " using system clipboard
-set foldexpr=nvim_treesitter#foldexpr()
-set foldlevel=99
-set foldmethod=expr
-set history=10000           " lines of history to remember
-set mouse=a                 " enable mouse click
-set scrolloff=15            " number of lines of context around cursor
-set shortmess+=c            " don't give |ins-completion-menu| messages.
-set signcolumn=yes          " always show signcolumns (left of numbers)
 set t_Co=256
+set ttyfast                 " make updates smoother but use more characters
 set undolevels=10000        " remember last 10000 changes
 set updatetime=250          " set update time to 250ms
+set wildmode=longest,list,full
 
 set formatoptions+=2        " use paragraph second line indent
 set formatoptions+=j        " merge comments when joining lines
