@@ -10,7 +10,7 @@ selection:
   save_to_clipboard: true
       
 window:
-  decorations: None
+  decorations: buttonless
   padding:
     x: 2 
     y: 2
@@ -21,9 +21,9 @@ scrolling:
 
 font:
   normal:
-    family: Source Code Pro
+    family: SauceCodePro Nerd Font Mono
     style: Regular
-  size: 17.0
+  size: 16.0
 
 draw_bold_text_with_bright_colors: true
 
